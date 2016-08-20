@@ -12,7 +12,7 @@
     [TestClass]
     public class InstructorServiceTest
     {
-        public Instructor createInstructor()
+        public Instructor CreateInstructor()
         {
             var instructor = new Instructor
             {
@@ -31,7 +31,7 @@
             var errors = new List<string>();
             var mockRepository = new Mock<IInstructorRepository>();
             var instructorService = new InstructorService(mockRepository.Object);
-            var instructor = createInstructor();
+            var instructor = this.CreateInstructor();
 
             //// Act
             instructorService.InsertInstructor(instructor, ref errors);

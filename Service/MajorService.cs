@@ -15,9 +15,51 @@
             this.repository = repository;
         }
 
-        private string GenerateID(string name)
+        public void InsertMajor(Major major, ref List<string> errors)
         {
-            return null;
+            if (!this.IsValidMajor(major, ref errors))
+            {
+                throw new ArgumentException();
+            }
+
+            this.repository.InsertMajor(major, ref errors);
+        }
+
+        public void UpdateMajor(Major major, ref List<string> errors)
+        {
+            if (!this.IsValidMajor(major, ref errors))
+            {
+                throw new ArgumentException();
+            }
+
+            this.repository.UpdateMajor(major, ref errors);
+        }
+
+        public Major GetMajor(string id, ref List<string> errors)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                errors.Add("Invalid major id");
+                throw new ArgumentException();
+            }
+
+            return this.repository.GetMajorDetail(id, ref errors);
+        }
+
+        public void DeleteMajor(string id, ref List<string> errors)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                errors.Add("Invalid major id");
+                throw new ArgumentException();
+            }
+
+            this.repository.DeleteMajor(id, ref errors);
+        }
+
+        public List<Major> GetStudentList(ref List<string> errors)
+        {
+            return this.repository.GetMajorList(ref errors);
         }
 
         private bool IsValidMajor(Major major, ref List<string> errors)
@@ -65,55 +107,7 @@
                 return false;
             }
 
-                return true;
+            return true;
         }
-
-        public void InsertMajor(Major major, ref List<string> errors)
-        {
-            if(!IsValidMajor(major, ref errors)) {
-                throw new ArgumentException();
-            }
-
-            this.repository.InsertMajor(major, ref errors);
-        }
-
-        public void UpdateMajor(Major major, ref List<string> errors)
-        {
-            if (!IsValidMajor(major, ref errors))
-            {
-                throw new ArgumentException();
-            }
-
-            this.repository.UpdateMajor(major, ref errors);
-        }
-
-        public Major GetMajor(string id, ref List<string> errors)
-        {
-            if (string.IsNullOrEmpty(id))
-            {
-                errors.Add("Invalid major id");
-                throw new ArgumentException();
-            }
-
-            return this.repository.GetMajorDetail(id, ref errors);
-        }
-
-        public void DeleteMajor(string id, ref List<string> errors)
-        {
-            if (string.IsNullOrEmpty(id))
-            {
-                errors.Add("Invalid major id");
-                throw new ArgumentException();
-            }
-
-            this.repository.DeleteMajor(id, ref errors);
-        }
-
-        public List<Major> GetStudentList(ref List<string> errors)
-        {
-            return this.repository.GetMajorList(ref errors);
-        }
-
-
     }
 }

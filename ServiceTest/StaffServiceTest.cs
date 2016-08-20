@@ -12,7 +12,7 @@
     [TestClass]
     public class StaffServiceTest
     {
-        public Staff createStaff()
+        public Staff CreateStaff()
         {
             var staff = new Staff
             {
@@ -32,7 +32,7 @@
             var staffService = new StaffService(mockRepository.Object);
 
             //// Act
-            staffService.StaffInputCheck(createStaff(), ref errors);
+            staffService.InsertStaff(this.CreateStaff(), ref errors);
 
             //// Assert
             Assert.AreEqual(0, errors.Count);
