@@ -9,15 +9,6 @@
 
     public class MajorController : ApiController
     {
-
-        [HttpGet]
-        public List<Major> GetMajorList(ref List<string> errors)
-        {
-            var repository = new MajorRepository();
-            var service = new MajorService(repository);
-            return service.GetMajorList(ref errors);
-        }
-
         [HttpGet]
         public Major GetMajor(string id, ref List<string> errors)
         {
