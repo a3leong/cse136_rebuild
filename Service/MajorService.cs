@@ -109,7 +109,7 @@
             this.repository.DeleteMajor(id, ref errors);
         }
 
-        public List<Major> GetStudentList(ref List<string> errors)
+        public List<Major> GetMajorList(ref List<string> errors)
         {
             return this.repository.GetMajorList(ref errors);
         }
