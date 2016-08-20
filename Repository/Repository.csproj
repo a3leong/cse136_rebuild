@@ -49,7 +49,10 @@
     <Compile Include="BaseRepository.cs" />
     <Compile Include="ApplicationExceptionHandlerAspect.cs" />
     <Compile Include="CourseRepository.cs" />
+    <Compile Include="InstructorRepository.cs" />
+    <Compile Include="MajorRepository.cs" />
     <Compile Include="ScheduleRepository.cs" />
+    <Compile Include="StaffRepository.cs" />
     <Compile Include="StudentRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -22,6 +22,8 @@
 
         public List<Schedule> Enrolled { get; set; }
 
+        public int MajorId { get; set; }
+
         public override string ToString()
         {
             return this.StudentId + "-"

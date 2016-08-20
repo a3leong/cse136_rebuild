@@ -16,6 +16,7 @@
         private const string GetStudentInfoProcedure = "spGetStudentInfo";
         private const string InsertStudentScheduleProcedure = "spInsertStudentSchedule";
         private const string DeleteStudentScheduleProcedure = "spDeleteStudentSchedule";
+        private const string GetEnrollmentsListProcedure = "spGetEnrollmentsListProcedure";
 
         public void InsertStudent(Student student, ref List<string> errors)
         {
@@ -328,8 +329,48 @@
 
         public List<Enrollment> GetEnrollments(string studentId)
         {
-            //// Not implemented yet. 136 TODO:
-            throw new Exception();
+            var conn = new SqlConnection(ConnectionString);
+            List<Enrollment> enrollmentList = new List<Enrollment>();
+
+            try
+            {
+                var adapter = new SqlDataAdapter(GetEnrollmentsListProcedure, conn)
+                {
+                    SelectCommand = { CommandType = CommandType.StoredProcedure }
+                };
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@student_id", SqlDbType.VarChar, 20));
+
+                adapter.SelectCommand.Parameters["@student_id"].Value = studentId;
+
+                var dataSet = new DataSet();
+                adapter.Fill(dataSet);
+
+                if (dataSet.Tables[0].Rows.Count == 0)
+                {
+                    return null;
+                }
+
+                for (var i = 0; i < dataSet.Tables[0].Rows.Count; i++)
+                {
+                    var enrollment = new Enrollment
+                    {
+                        StudentId = dataSet.Tables[0].Rows[i]["student_id"].ToString(),
+                        ScheduleId = Convert.ToInt32(dataSet.Tables[0].Rows[i]["schedule_id"].ToString()),
+                        Grade = dataSet.Tables[0].Rows[i]["grade"].ToString(),
+                    };
+                    enrollmentList.Add(enrollment);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+
+            return enrollmentList;
         }
     }
 }

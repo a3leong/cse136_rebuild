@@ -40,7 +40,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ICourseRepository.cs" />
+    <Compile Include="IEnrollmentRepository.cs" />
+    <Compile Include="IInstructorRepository.cs" />
+    <Compile Include="IMajorRepository.cs" />
     <Compile Include="IScheduleRepository.cs" />
+    <Compile Include="IStaffRepository.cs" />
     <Compile Include="IStudentRepository.cs" />
     <Compile Include="IAuthorizeRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
