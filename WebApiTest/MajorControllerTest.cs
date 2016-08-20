@@ -9,7 +9,6 @@ namespace WebApiTest
     [TestClass]
     public class MajorControllerTest
     {
-
         public Major createMajor()
         {
             var major = new Major
@@ -68,9 +67,9 @@ namespace WebApiTest
         [ExpectedException(typeof(ArgumentException))]
         public void DeleteMajorSuccessTest()
         {
-
+            var errors = new List<String>();
             var majorController = new MajorController();
-            var success = majorController.DeleteMajor("1");
+            var success = majorController.DeleteMajor("1", ref errors);
             Assert.AreEqual("ok", success);
         }
     }

@@ -56,18 +56,15 @@
         }
 
         [HttpPost]
-        public string DeleteMajor(string id)
+        public string DeleteMajor(string id, ref List<string> errors)
         {
-            var errors = new List<string>();
             var repository = new MajorRepository();
             var service = new MajorService(repository);
             service.DeleteMajor(id, ref errors);
-
             if (errors.Count == 0)
             {
                 return "ok";
             }
-
             return "error";
         }
     }
