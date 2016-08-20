@@ -34,7 +34,7 @@
             var instructor = createInstructor();
 
             //// Act
-            instructorService.InstructorInputCheck(instructor, ref errors);
+            instructorService.InsertInstructor(instructor, ref errors);
 
             //// Assert
             Assert.AreEqual(0, errors.Count);
