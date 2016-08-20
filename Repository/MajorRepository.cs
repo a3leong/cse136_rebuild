@@ -30,10 +30,10 @@
 
                 adapter.SelectCommand.Parameters.Add(new SqlParameter("@full_name", SqlDbType.VarChar, 20));
                 adapter.SelectCommand.Parameters.Add(new SqlParameter("@shorthand_name", SqlDbType.VarChar, 5));
-                adapter.SelectCommand.Parameters.Add(new SqlParameter("@decription", SqlDbType.VarChar, 500));
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@description", SqlDbType.VarChar, 500));
 
                 adapter.SelectCommand.Parameters["@full_name"].Value = major.FullName;
-                adapter.SelectCommand.Parameters["@display_name"].Value = major.ShorthandName;
+                adapter.SelectCommand.Parameters["@shorthand_name"].Value = major.ShorthandName;
                 adapter.SelectCommand.Parameters["@description"].Value = major.Description;
 
                 var dataSet = new DataSet();
@@ -59,10 +59,12 @@
                     SelectCommand = { CommandType = CommandType.StoredProcedure }
                 };
 
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@id", SqlDbType.Int));
                 adapter.SelectCommand.Parameters.Add(new SqlParameter("@full_name", SqlDbType.VarChar, 20));
                 adapter.SelectCommand.Parameters.Add(new SqlParameter("@shorthand_name", SqlDbType.VarChar, 5));
-                adapter.SelectCommand.Parameters.Add(new SqlParameter("@decription", SqlDbType.VarChar, 500));
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@description", SqlDbType.VarChar, 500));
 
+                adapter.SelectCommand.Parameters["@id"].Value = major.Id;
                 adapter.SelectCommand.Parameters["@full_name"].Value = major.FullName;
                 adapter.SelectCommand.Parameters["@shorthand_name"].Value = major.ShorthandName;
                 adapter.SelectCommand.Parameters["@description"].Value = major.Description;
@@ -123,9 +125,9 @@
                 {
                     SelectCommand = { CommandType = CommandType.StoredProcedure }
                 };
-                adapter.SelectCommand.Parameters.Add(new SqlParameter("@id", SqlDbType.VarChar, 20));
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@shorthand_name", SqlDbType.VarChar, 5));
 
-                adapter.SelectCommand.Parameters["@id"].Value = id;
+                adapter.SelectCommand.Parameters["@shorthand_name"].Value = id;
 
                 var dataSet = new DataSet();
                 adapter.Fill(dataSet);

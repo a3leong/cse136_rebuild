@@ -50,13 +50,11 @@ namespace WebApiTest
             var errors = new List<string>();
             var majorController = new MajorController();
             var major = majorController.GetMajor("1", ref errors);
-            System.Console.WriteLine(errors[0]);
             Assert.AreEqual(0, errors.Count);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void UpdatetMajorSuccessTest()
+        public void UpdateMajorSuccessTest()
         {
             var errors = new List<string>();
             var majorController = new MajorController();
