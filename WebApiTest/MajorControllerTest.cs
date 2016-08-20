@@ -34,7 +34,7 @@ namespace WebApiTest
         }
         
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        //[ExpectedException(typeof(ArgumentException))]
         public void InsertMajorSuccessTest()
         {
             var errors = new List<string>();
@@ -44,12 +44,13 @@ namespace WebApiTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        //[ExpectedException(typeof(ArgumentException))]
         public void GetMajorSuccessTest()
         {
             var errors = new List<string>();
             var majorController = new MajorController();
             var major = majorController.GetMajor("1", ref errors);
+            System.Console.WriteLine(errors[0]);
             Assert.AreEqual(0, errors.Count);
         }
 
@@ -64,7 +65,7 @@ namespace WebApiTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        //[ExpectedException(typeof(ArgumentException))]
         public void DeleteMajorSuccessTest()
         {
             var errors = new List<String>();
