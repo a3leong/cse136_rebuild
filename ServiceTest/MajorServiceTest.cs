@@ -46,13 +46,14 @@
             var errors = new List<string>();
             var mockRepository = new Mock<IMajorRepository>();
             var majorService = new MajorService(mockRepository.Object);
-            var major = new Major { 
-                                    FullName = string.Empty,
-                                    ShorthandName = "CSE",
-                                    Description = "Jacob's school of engineering"  
-                                  };
-            majorService.InsertMajor(major, ref errors);
+            var major = new Major
+            { 
+                FullName = string.Empty,
+                ShorthandName = "CSE",
+                Description = "Jacob's school of engineering"  
+            };
 
+            majorService.InsertMajor(major, ref errors);
             Assert.AreEqual(1, errors.Count);
         }
 
@@ -164,12 +165,11 @@
             Assert.AreEqual(1, errors.Count);
         }
 
-
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void InsertMajorErrorDescriptionTooLongTest()
         {
-            string description = "";
+            string description = string.Empty;
             for (int i = 0; i < 501; i++)
             {
                 description = description + "a";

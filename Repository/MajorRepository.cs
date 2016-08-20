@@ -80,7 +80,7 @@
             }
         }
 
-        public void DeleteMajor(string shorthand_id, ref List<string> errors)
+        public void DeleteMajor(string id, ref List<string> errors)
         {
             var conn = new SqlConnection(ConnectionString);
 
@@ -95,9 +95,9 @@
                             .StoredProcedure
                     }
                 };
-                adapter.SelectCommand.Parameters.Add(new SqlParameter("@shorthand_name", SqlDbType.VarChar, 20));
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@id", SqlDbType.VarChar, 20));
 
-                adapter.SelectCommand.Parameters["@shorthand_name"].Value = shorthand_id;
+                adapter.SelectCommand.Parameters["@id"].Value = id;
 
                 var dataSet = new DataSet();
                 adapter.Fill(dataSet);
@@ -112,7 +112,7 @@
             }
         }
 
-        public Major GetMajorDetail(string shorthand_id, ref List<string> errors)
+        public Major GetMajorDetail(string id, ref List<string> errors)
         {
             var conn = new SqlConnection(ConnectionString);
             Major major = null;
@@ -123,9 +123,9 @@
                 {
                     SelectCommand = { CommandType = CommandType.StoredProcedure }
                 };
-                adapter.SelectCommand.Parameters.Add(new SqlParameter("@shorthand_id", SqlDbType.VarChar, 20));
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@id", SqlDbType.VarChar, 20));
 
-                adapter.SelectCommand.Parameters["@shorthand_id"].Value = shorthand_id;
+                adapter.SelectCommand.Parameters["@id"].Value = id;
 
                 var dataSet = new DataSet();
                 adapter.Fill(dataSet);
