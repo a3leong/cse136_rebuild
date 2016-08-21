@@ -48,6 +48,7 @@
     <Compile Include="AuthorizeRepository.cs" />
     <Compile Include="BaseRepository.cs" />
     <Compile Include="ApplicationExceptionHandlerAspect.cs" />
+    <Compile Include="EnrollmentRepository.cs" />
     <Compile Include="CourseRepository.cs" />
     <Compile Include="InstructorRepository.cs" />
     <Compile Include="MajorRepository.cs" />

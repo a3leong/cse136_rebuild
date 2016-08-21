@@ -7,7 +7,13 @@
 
     public class EnrollmentService
     {
-        // private readonly IAdminRepository repository;
+        private readonly IEnrollmentRepository repository;
+        public EnrollmentService(IEnrollmentRepository repository)
+        {
+            this.repository = repository;
+        }
+
+
         public void EnrollmentInputCheck(Enrollment enrollment, ref List<string> errors)
         {
             if (enrollment.StudentId.Length > Constants.ENROLLMENT_STUDENT_ID_MAX || string.IsNullOrEmpty(enrollment.StudentId))
@@ -33,6 +39,11 @@
                 errors.Add("Completed bit must be 0 (incomplete) or 1 (complete).");
                 throw new ArgumentException();
             }
+        }
+
+        public List<Enrollment> GetEnrollmentList(ref List<string> errors)
+        {
+            return repository.GetEnrollmentList(ref errors);
         }
     }
 }

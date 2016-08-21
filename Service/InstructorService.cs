@@ -34,7 +34,7 @@
             repository.UpdateInstructor(instructor, ref errors);
         }
 
-        public void GetInstructor(string id, ref List<string> errors)
+        public Instructor GetInstructor(string id, ref List<string> errors)
         {
             if (string.IsNullOrEmpty(id))
             {
@@ -42,7 +42,7 @@
                 throw new ArgumentException();
             }
 
-            repository.GetInstructorDetail(id, ref errors);
+            return repository.GetInstructorDetail(id, ref errors);
         }
 
         public void DeleteInstructor(string id, ref List<string> errors)
