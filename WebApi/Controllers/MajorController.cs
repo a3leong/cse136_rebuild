@@ -14,7 +14,12 @@
         {
             var repository = new MajorRepository();
             var service = new MajorService(repository);
-            return service.GetMajor(id, ref errors);
+            var major = service.GetMajor(id, ref errors);
+            if (major == null)
+            {
+                return null;
+            }
+            return major;
         }
 
         [HttpPost]

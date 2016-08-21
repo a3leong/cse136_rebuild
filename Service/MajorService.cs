@@ -43,7 +43,7 @@
                 throw new ArgumentException();
             }
 
-            return this.repository.GetMajorDetail(id, ref errors);
+            return this.repository.GetMajorDetailByShorthand(id, ref errors);
         }
 
         public void DeleteMajor(string id, ref List<string> errors)

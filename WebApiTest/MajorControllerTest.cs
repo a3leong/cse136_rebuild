@@ -14,9 +14,9 @@ namespace WebApiTest
             var major = new Major
             {
                 Id = 1,
-                FullName = "Computer Science and Engineering",
-                ShorthandName = "CSE",
-                Description = "A major for people who want to be computer programmers and engineers.",
+                FullName = "Gender Studies2",
+                ShorthandName = "GS2",
+                Description = "A non-practical major.",
             };
             return major;
         }
@@ -25,17 +25,16 @@ namespace WebApiTest
         {
             var major = new Major
             {
-                Id = 1,
-                FullName = "Computer Science and Engineering!",
-                ShorthandName = "CSE",
-                Description = "A major for people who want to be computer programmers and engineers!",
+                Id = 3,
+                FullName = "Computer Swag",
+                ShorthandName = "CSW",
+                Description = "A major",
             };
             return major;
         }
         
         [TestMethod]
-        //[ExpectedException(typeof(ArgumentException))]
-        public void InsertMajorSuccessTest()
+        public void WebAPIInsertMajorSuccessTest()
         {
             var errors = new List<string>();
             var majorController = new MajorController();
@@ -44,17 +43,20 @@ namespace WebApiTest
         }
 
         [TestMethod]
-        //[ExpectedException(typeof(ArgumentException))]
-        public void GetMajorSuccessTest()
+        public void WebAPIGetMajorSuccessTest()
         {
             var errors = new List<string>();
             var majorController = new MajorController();
-            var major = majorController.GetMajor("1", ref errors);
+            var major = majorController.GetMajor("CSW", ref errors);
+            Assert.AreEqual(major.Id, 3);
+            Assert.AreEqual(major.FullName, "Computer Swag");
+            Assert.AreEqual(major.ShorthandName, "CSW");
+            Assert.AreEqual(major.Description, "A major");
             Assert.AreEqual(0, errors.Count);
         }
 
         [TestMethod]
-        public void UpdateMajorSuccessTest()
+        public void WebAPIUpdateMajorSuccessTest()
         {
             var errors = new List<string>();
             var majorController = new MajorController();
@@ -63,12 +65,11 @@ namespace WebApiTest
         }
 
         [TestMethod]
-        //[ExpectedException(typeof(ArgumentException))]
-        public void DeleteMajorSuccessTest()
+        public void WebAPIDeleteMajorSuccessTest()
         {
             var errors = new List<String>();
             var majorController = new MajorController();
-            var success = majorController.DeleteMajor("1", ref errors);
+            var success = majorController.DeleteMajor("7", ref errors);
             for (int i = 0; i < errors.Count; i++)
             {
                 System.Console.WriteLine(errors[i]);

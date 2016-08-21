@@ -114,7 +114,7 @@
             }
         }
 
-        public Major GetMajorDetail(string id, ref List<string> errors)
+        public Major GetMajorDetailByShorthand(string id, ref List<string> errors)
         {
             var conn = new SqlConnection(ConnectionString);
             Major major = null;
@@ -140,11 +140,12 @@
                 major = new Major
                 {
                     Id = Convert.ToInt32(dataSet.Tables[0].Rows[0]["id"].ToString()),
-                    FullName = dataSet.Tables[0].Rows[0]["name"].ToString(),
-                    ShorthandName = dataSet.Tables[0].Rows[0]["display_name"].ToString(),
+                    FullName = dataSet.Tables[0].Rows[0]["full_name"].ToString(),
+                    ShorthandName = dataSet.Tables[0].Rows[0]["shorthand_name"].ToString(),
                     Description = dataSet.Tables[0].Rows[0]["description"].ToString(),
                 };
 
+                /**
                 if (dataSet.Tables[1] != null)
                 {
                     major.CourseRequirements = new List<Course>();
@@ -159,7 +160,7 @@
                         };
                         major.CourseRequirements.Add(course);
                     }
-                }
+                } **/
             }
             catch (Exception e)
             {
