@@ -69,6 +69,10 @@ namespace WebApiTest
             var errors = new List<String>();
             var majorController = new MajorController();
             var success = majorController.DeleteMajor("1", ref errors);
+            for (int i = 0; i < errors.Count; i++)
+            {
+                System.Console.WriteLine(errors[i]);
+            }
             Assert.AreEqual("ok", success);
         }
     }
