@@ -16,7 +16,32 @@
             return this.View();
         }
 
+        public ActionResult EditMajors()
+        {
+            return this.View();
+        }
+
         public ActionResult StudentList()
+        {
+            return this.View();
+        }
+
+        public ActionResult ManageScheduleDayTable()
+        {
+            return this.View();
+        }
+
+        public ActionResult ManageScheduleTimeTable()
+        {
+            return this.View();
+        }
+        
+        public ActionResult NewCoursePlan()
+        {
+            return this.View();
+        }
+        
+        public ActionResult NewCourseSchedule()
         {
             return this.View();
         }

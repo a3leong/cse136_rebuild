@@ -210,7 +210,11 @@
     <Content Include="Views\FinancialAid\Index.cshtml" />
     <Content Include="Views\FinancialAid\Grants.cshtml" />
     <Content Include="Views\FinancialAid\Loans.cshtml" />
-    <Content Include="Views\Admin\EditMajor.cshtml" />
+    <Content Include="Views\Admin\EditMajors.cshtml" />
+    <Content Include="Views\Admin\NewCourseSchedule.cshtml" />
+    <Content Include="Views\Admin\ManageScheduleDayTable.cshtml" />
+    <Content Include="Views\Admin\ManageScheduleTimeTable.cshtml" />
+    <Content Include="Views\Admin\NewCoursePlan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
