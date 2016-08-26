@@ -12,10 +12,10 @@
         public List<Course> GetCourseList()
         {
             var service = new CourseService(new CourseRepository());
-            var errors = new List<string>();
+            var error = new List<string>();
 
             //// we could log the errors here if there are any...
-            return service.GetCourseList(ref errors);
+            return service.GetCourseList(ref error);
         }
 
         //// you can add more [HttpGet] and [HttpPost] methods as you need
