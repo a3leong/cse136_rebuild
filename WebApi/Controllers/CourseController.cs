@@ -9,9 +9,10 @@
     public class CourseController : ApiController
     {
         [HttpGet]
-        public List<Course> GetCourseList(ref List<string> errors)
+        public List<Course> GetCourseList()
         {
             var service = new CourseService(new CourseRepository());
+            var errors = new List<string>();
 
             //// we could log the errors here if there are any...
             return service.GetCourseList(ref errors);
