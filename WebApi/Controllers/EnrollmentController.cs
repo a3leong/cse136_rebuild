@@ -10,10 +10,11 @@
     public class EnrollmentController : ApiController
     {
         [HttpGet]
-        public List<Enrollment> GetEnrollmentList(ref List<string> errors)
+        public List<Enrollment> GetEnrollmentList()
         {
             var repository = new EnrollmentRepository();
             var service = new EnrollmentService(repository);
+            var errors = new List<string>();
             return service.GetEnrollmentList(ref errors);
         }
     }
