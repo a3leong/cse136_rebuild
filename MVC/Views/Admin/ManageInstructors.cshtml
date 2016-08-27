@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "ManageInstructors";
+}
+<h2>Manage Instructors</h2>
+
+<div id="divEditInstructors">
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>First</th>
+                <th>Last</th>
+                <th>Title</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: viewModel">
+            <tr>
+                <td data-bind="text: first_name"></td>
+                <td data-bind="text: last_name"></td>
+                <td data-bind="text: title"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<script type="text/html" id="action-template">
+    <!-- in the template, $data is each element of the viewModel which contains "id" -->
+    <a data-bind="attr: { href : '/Instructor/?id=' + id, title: 'detail' }">detail</a>
+    <a data-bind="attr: { href : '/Staff/EditInstructor?id=' + id, title: 'edit' }">edit</a>
+    <a data-bind="DeleteInstructor: $data">delete</a>
+    <a data-bind="DeleteInstructorAsync: $data">delete async</a>
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var instructorViewModelObj = new InstructorViewModel();
+        instructorViewModelObj.Load();
+    });
+</script>
