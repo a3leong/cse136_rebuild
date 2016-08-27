@@ -48,4 +48,20 @@
                 ko.applyBindings({ viewModel: courseListViewModel }, document.getElementById("divCourseListStaffContent"));
             });
     };
+
+    this.Create = function (data) {
+        var model = {
+            Title: data.title(),
+            Level: data.level(),
+            Description: data.description()
+        }
+
+        courseListModelObj.Create(model, function (result) {
+            if (result == "ok") {
+                alert("Create course successful");
+            } else {
+                alert("Error occurred");
+            }
+        });
+    }
 }

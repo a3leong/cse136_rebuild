@@ -36,11 +36,11 @@
     };
 
     this.LoadMajorList = function () {
-        var majorListModelObj = new MajorListModel();
+        
 
         // Because the Load() is a async call (asynchronous), we'll need to use
         // the callback approach to handle the data after data is loaded.
-        majorListModelObj.LoadMajorList(function (majorListData) {
+        MajorModelObj.LoadMajorList(function (majorListData) {
 
             // courseList - presentation layer model retrieved from /Major/GetMajorList route.
             // majorListViewModel - view model for the html content
@@ -51,7 +51,7 @@
                 majorListViewModel[i] = {
                                             id: majorListData[i].Id,
                                             fullname: majorListData[i].FullName,
-                                            shorthandname: majorData.ShorthandName,
+                                            shorthandname: majorListData.ShorthandName,
                                             description: majorListData[i].Description
                                         };
             }
