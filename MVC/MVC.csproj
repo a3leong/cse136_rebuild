@@ -188,7 +188,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Admin\CreateMajor.cshtml" />
-    <None Include="Views\Admin\ManageInstructors.cshtml" />
+    <None Include="Views\Admin\InstructorList.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -220,13 +220,9 @@
     <Content Include="Views\FinancialAid\Index.cshtml" />
     <Content Include="Views\FinancialAid\Grants.cshtml" />
     <Content Include="Views\FinancialAid\Loans.cshtml" />
-    <Content Include="Views\Admin\EditMajors.cshtml" />
+    <Content Include="Views\Admin\MajorList.cshtml" />
     <Content Include="Views\Admin\ManageCourseSchedule.cshtml" />
-    <Content Include="Views\Admin\ManageScheduleDayTable.cshtml" />
-    <Content Include="Views\Admin\ManageScheduleTimeTable.cshtml" />
-    <Content Include="Views\Admin\NewCoursePlan.cshtml" />
     <Content Include="Views\Staff\CourseList.cshtml" />
-    <Content Include="Views\Admin\ManageStaff.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
