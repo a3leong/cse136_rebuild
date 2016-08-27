@@ -10,18 +10,20 @@
     public class InstructorController : ApiController
     {
         [HttpGet]
-        public Instructor GetInstructor(string id, ref List<string> errors)
+        public Instructor GetInstructor(string id)
         {
             var repository = new InstructorRepository();
             var service = new InstructorService(repository);
+            var errors = new List<string>();
             return service.GetInstructor(id, ref errors);
         }
 
         [HttpPost]
-        public string InsertInstructor(Instructor Instructor, ref List<string> errors)
+        public string InsertInstructor(Instructor Instructor)
         {
             var repository = new InstructorRepository();
             var service = new InstructorService(repository);
+            var errors = new List<string>();
             service.InsertInstructor(Instructor, ref errors);
             if (errors.Count == 0)
             {
@@ -32,10 +34,11 @@
         }
 
         [HttpPost]
-        public string UpdateInstructor(Instructor Instructor, ref List<string> errors)
+        public string UpdateInstructor(Instructor Instructor)
         {
             var repository = new InstructorRepository();
             var service = new InstructorService(repository);
+            var errors = new List<string>();
             service.UpdateInstructor(Instructor, ref errors);
 
             if (errors.Count == 0)
@@ -47,10 +50,11 @@
         }
 
         [HttpPost]
-        public string DeleteInstructor(string id, ref List<string> errors)
+        public string DeleteInstructor(string id)
         {
             var repository = new InstructorRepository();
             var service = new InstructorService(repository);
+            var errors = new List<string>();
             service.DeleteInstructor(id, ref errors);
             if (errors.Count == 0)
             {

@@ -36,9 +36,8 @@ namespace WebApiTest
         [TestMethod]
         public void WebAPIInsertMajorSuccessTest()
         {
-            var errors = new List<string>();
             var majorController = new MajorController();
-            var success = majorController.InsertMajor(createMajor(), ref errors);
+            var success = majorController.InsertMajor(createMajor());
             Assert.AreEqual("ok", success);
         }
 
@@ -47,7 +46,7 @@ namespace WebApiTest
         {
             var errors = new List<string>();
             var majorController = new MajorController();
-            var major = majorController.GetMajor("CSW", ref errors);
+            var major = majorController.GetMajor("CSW");
             Assert.AreEqual(major.Id, 3);
             Assert.AreEqual(major.FullName, "Computer Swag");
             Assert.AreEqual(major.ShorthandName, "CSW");
@@ -60,7 +59,7 @@ namespace WebApiTest
         {
             var errors = new List<string>();
             var majorController = new MajorController();
-            var success = majorController.UpdateMajor(modifyMajor(), ref errors);
+            var success = majorController.UpdateMajor(modifyMajor());
             Assert.AreEqual("ok", success);
         }
 
@@ -69,7 +68,7 @@ namespace WebApiTest
         {
             var errors = new List<String>();
             var majorController = new MajorController();
-            var success = majorController.DeleteMajor("8", ref errors);
+            var success = majorController.DeleteMajor("8");
             for (int i = 0; i < errors.Count; i++)
             {
                 System.Console.WriteLine(errors[i]);

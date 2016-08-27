@@ -19,5 +19,36 @@
         }
 
         //// you can add more [HttpGet] and [HttpPost] methods as you need
+        [HttpPost]
+        public void InsertCourse(Course course)
+        {
+            var service = new CourseService(new CourseRepository());
+            var errors = new List<string>();
+            service.InsertCourse(course, ref errors);
+        }
+
+        [HttpPost]
+        public void DeleteCourse(string id)
+        {
+            var service = new CourseService(new CourseRepository());
+            var errors = new List<string>();
+            service.DeleteCourse(id, ref errors);
+        }
+
+        [HttpPost]
+        public void UpdateCourse(Course course)
+        {
+            var service = new CourseService(new CourseRepository());
+            var errors = new List<string>();
+            service.UpdateCourse(course, ref errors);
+        }
+
+        [HttpGet]
+        public Course GetCourseDetails(string id)
+        {
+            var service = new CourseService(new CourseRepository());
+            var errors = new List<string>();
+            return service.GetCourseDetails(id, ref errors);
+        }
     }
 }
