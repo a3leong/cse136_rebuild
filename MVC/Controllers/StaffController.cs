@@ -23,5 +23,11 @@
         {
             return this.View();
         }
+
+        public ActionResult CourseList(string id)
+        {
+            ViewBag.id = id;
+            return this.View();
+        }
     }
 }

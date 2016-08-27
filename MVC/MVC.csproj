@@ -217,6 +217,7 @@
     <Content Include="Views\Admin\ManageScheduleDayTable.cshtml" />
     <Content Include="Views\Admin\ManageScheduleTimeTable.cshtml" />
     <Content Include="Views\Admin\NewCoursePlan.cshtml" />
+    <Content Include="Views\Staff\CourseList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
