@@ -25,13 +25,13 @@
             </tr>
         </tbody>
     </table>
-    <a data-bind="attr: { href : '/Shared/CreateStudent', title: 'create' }">Add new instructor</a>
+    <a data-bind="attr: { href : '/Instructor/CreateInstructor', title: 'create' }">Add new instructor</a>
 </div>
 
 <script type="text/html" id="action-template">
     <!-- in the template, $data is each element of the viewModel which contains "id" -->
-    <a data-bind="attr: { href : '/Student/?id=' + id, title: 'detail' }">detail</a>
-    <a data-bind="attr: { href : '/Staff/EditInstructor?id=' + id, title: 'edit' }">edit</a>
+    <a data-bind="attr: { href : '/Instructor/?id=' + id, title: 'detail' }">detail</a>
+    <a data-bind="attr: { href : '/Instructor/EditInstructor?id=' + id, title: 'edit' }">edit</a>
     <a data-bind="DeleteInstructor: $data">delete</a>
     <a data-bind="DeleteInstructorAsync: $data">delete async</a>
 </script>

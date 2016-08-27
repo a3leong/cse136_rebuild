@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "CreateMajor";
+}
+
+<h3>Create a new major</h3>
+<a href="/Admin/EditMajors"><< back</a>
+<div id="divCreateMajor">
+    <table>
+        <tr>
+            <td>Full Name</td>
+            <td><input data-bind="value: fullname" /> (at least 5 chars)</td>
+        </tr>
+        <tr>
+            <td>Shorthand Name</td>
+            <td><input data-bind="value: shorthandname" /></td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td><input data-bind="value: description" /></td>
+        </tr>
+    </table>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var majorListViewModelObj = new MajorListViewModel();
+        majorListViewModelObj.Initialize();
+    });
+</script>
