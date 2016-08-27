@@ -125,7 +125,9 @@
     <Compile Include="Models\StudentInfo.cs" />
     <Compile Include="Models\LogonResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Scripts\136Libraries\Models\InstructorModel.js" />
     <Content Include="Scripts\136Libraries\Models\ScheduleListModel.js" />
+    <Content Include="Scripts\136Libraries\ViewModels\InstructorViewModel.js" />
     <Content Include="Scripts\136Libraries\ViewModels\ScheduleListViewModel.js" />
   </ItemGroup>
   <ItemGroup>
@@ -183,6 +185,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <None Include="Views\Admin\ManageInstructors.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -223,6 +226,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Instructor\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

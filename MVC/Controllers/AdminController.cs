@@ -45,5 +45,10 @@
         {
             return this.View();
         }
+
+        public ActionResult ManageInstructors()
+        {
+            return this.View();
+        }
     }
 }
