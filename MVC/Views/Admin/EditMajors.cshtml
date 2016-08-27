@@ -10,16 +10,31 @@
             <tr>
                 <th>Major Name</th>
                 <th>Description</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody data-bind="foreach: viewModel">
             <tr>
                 <td data-bind="text: FullName"></td>
                 <td data-bind="text: Description"></td>
+                <td>
+                    <!-- Note, this is an example using knockout templating. $data is the keyword
+                         to for each element of the viewModel array -->
+                    <div data-bind="template: { name: 'action-template', data: $data}"></div>
+                </td>
             </tr>
         </tbody>
     </table>
+    <a data-bind="attr: { href : '/Admin/CreateMajor', title: 'create' }">Add new major</a>
 </div>
+
+<script type="text/html" id="action-template">
+    <!-- in the template, $data is each element of the viewModel which contains "id" -->
+    <a data-bind="attr: { href : '/Major/?id=' + id, title: 'detail' }">detail</a>
+    <a data-bind="attr: { href : '/Major/EditMajor?id=' + id, title: 'edit' }">edit</a>
+    <a data-bind="DeleteMajor: $data">delete</a>
+    <a data-bind="DeleteMajorAsync: $data">delete async</a>
+</script>
 
 <script type="text/javascript">
     $(document).ready(function () {
