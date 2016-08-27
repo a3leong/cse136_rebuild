@@ -42,5 +42,10 @@
         {
             return this.View();
         }
+
+        public ActionResult CreateCourse()
+        {
+            return this.View();
+        }
     }
 }
