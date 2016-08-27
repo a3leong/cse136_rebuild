@@ -38,11 +38,6 @@
             return this.View();
         }
 
-        public ActionResult MajorList()
-        {
-            return this.View();
-        }
-
         public ActionResult CreateMajor()
         {
             return this.View();

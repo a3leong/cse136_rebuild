@@ -109,4 +109,20 @@ function StudentModel(asyncIndicator) {
             }
         });
     };
+
+    this.Update = function (student, callback) {
+        $.ajax({
+            async: asyncIndicator,
+            method: "POST",
+            url: "http://localhost:9393/Api/Student/UpdateStudent",
+            data: student,
+            dataType: "json",
+            success: function (result) {
+                callback(result);
+            },
+            error: function () {
+                alert('Error while adding student.  Is your service layer running?');
+            }
+        });
+    };
 }

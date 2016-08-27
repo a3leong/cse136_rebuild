@@ -46,6 +46,28 @@
 
     };
 
+    this.UpdateStudent = function (data) {
+        var model = {
+            StudentId: data.id(),
+            SSN: data.ssn(),
+            FirstName: data.first(),
+            LastName: data.last(),
+            Email: data.email(),
+            Password: data.password(),
+            ShoeSize: data.shoesize(),
+            Weight: data.weight()
+        }
+
+        StudentModelObj.Update(model, function (result) {
+            if (result == "ok") {
+                alert("Create student successful");
+            } else {
+                alert("Error occurred");
+            }
+        });
+
+    };
+
     this.GetAll = function() {
 
         StudentModelObj.GetAll(function(studentList) {
