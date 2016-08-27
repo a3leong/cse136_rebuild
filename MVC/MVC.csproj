@@ -125,6 +125,8 @@
     <Compile Include="Models\StudentInfo.cs" />
     <Compile Include="Models\LogonResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Scripts\136Libraries\Models\ScheduleListModel.js" />
+    <Content Include="Scripts\136Libraries\ViewModels\ScheduleListViewModel.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -213,7 +215,7 @@
     <Content Include="Views\FinancialAid\Grants.cshtml" />
     <Content Include="Views\FinancialAid\Loans.cshtml" />
     <Content Include="Views\Admin\EditMajors.cshtml" />
-    <Content Include="Views\Admin\NewCourseSchedule.cshtml" />
+    <Content Include="Views\Admin\ManageCourseSchedule.cshtml" />
     <Content Include="Views\Admin\ManageScheduleDayTable.cshtml" />
     <Content Include="Views\Admin\ManageScheduleTimeTable.cshtml" />
     <Content Include="Views\Admin\NewCoursePlan.cshtml" />

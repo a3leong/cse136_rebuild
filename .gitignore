@@ -154,9 +154,4 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
-/Service/DatabaseService.cs
-/ServiceTest/DatabaseValidationTest.cs
-/sqlStuff.sxql
-/stored-procedures_backup.txt
-/stored-procedures.txt
-/turnin2_examples
+/ServiceTest/EnrollmentServiceTest.cs
