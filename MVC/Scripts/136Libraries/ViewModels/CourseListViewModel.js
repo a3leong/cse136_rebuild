@@ -24,7 +24,7 @@
         });
     };
 
-        this.LoadByStaff = function (id) {
+    this.LoadByStaff = function (id) {
             var courseListModelObj = new CourseListModel();
 
             // Because the Load() is a async call (asynchronous), we'll need to use
