@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "manageSchedule";
+    var id = ViewBag.id;
+}
+<h2>Manage Schedule</h2>
+
+<div id="divScheduleListEdit">
+    <table>
+        <thead>
+            <tr>
+                <th>Year</th>
+                <th>Quarter</th>
+                <th>Session</th>
+                <th>Course</th>
+                <th>Instructor</th>
+                <th>Day</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: viewModel">
+            <tr>
+                <td data-bind="text: Year"></td>
+                <td data-bind="text: Quarter"></td>
+                <td data-bind="text: Session"></td>
+                <td data-bind="text: Course"></td>
+                <td data-bind="text: Instructor"></td>
+                <td data-bind="text: Day"></td>
+                <td data-bind="text: Time"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var viewModel = new ScheduleListViewModel();
+        viewModel.Load();
+    });
+
+</script>

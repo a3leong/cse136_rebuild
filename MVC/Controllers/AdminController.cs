@@ -41,7 +41,7 @@
             return this.View();
         }
         
-        public ActionResult NewCourseSchedule()
+        public ActionResult ManageCourseSchedule()
         {
             return this.View();
         }
