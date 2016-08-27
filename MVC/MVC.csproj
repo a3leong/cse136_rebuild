@@ -127,6 +127,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Scripts\136Libraries\Models\InstructorModel.js" />
     <Content Include="Scripts\136Libraries\Models\ScheduleListModel.js" />
+    <Content Include="Scripts\136Libraries\Models\StaffModel.js" />
     <Content Include="Scripts\136Libraries\ViewModels\InstructorViewModel.js" />
     <Content Include="Scripts\136Libraries\ViewModels\ScheduleListViewModel.js" />
   </ItemGroup>
@@ -149,6 +150,7 @@
     <Content Include="Scripts\136Libraries\ViewModels\MajorListViewModel.js" />
     <Content Include="Scripts\136Libraries\ViewModels\CourseListViewModel.js" />
     <Content Include="Scripts\136Libraries\ViewModels\LoginViewModel.js" />
+    <Content Include="Scripts\136Libraries\ViewModels\StaffViewModel.js" />
     <Content Include="Scripts\136Libraries\ViewModels\StudentViewModel.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -223,6 +225,7 @@
     <Content Include="Views\Admin\ManageScheduleTimeTable.cshtml" />
     <Content Include="Views\Admin\NewCoursePlan.cshtml" />
     <Content Include="Views\Staff\CourseList.cshtml" />
+    <Content Include="Views\Admin\ManageStaff.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

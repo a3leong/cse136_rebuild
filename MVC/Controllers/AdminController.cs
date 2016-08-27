@@ -50,5 +50,10 @@
         {
             return this.View();
         }
+
+        public ActionResult ManageStaff()
+        {
+            return this.View();
+        }
     }
 }
