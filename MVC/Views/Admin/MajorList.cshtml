@@ -4,7 +4,7 @@
 }
 <h2>Edit Major</h2>
 
-<div id="divMajorListEdit">
+<div id="divMajorList">
     <table>
         <thead>
             <tr>
@@ -38,8 +38,8 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        var viewModel = new MajorListViewModel();
-        viewModel.Load();
+        var viewModel = new MajorViewModel();
+        viewModel.LoadMajors();
     });
 
 </script>

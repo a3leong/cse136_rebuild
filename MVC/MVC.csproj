@@ -142,12 +142,12 @@
     <Content Include="Content\Site.css" />
     <Content Include="Icon.png" />
     <Content Include="Scripts\136Libraries\Models\AdminModel.js" />
-    <Content Include="Scripts\136Libraries\Models\MajorListModel.js" />
+    <Content Include="Scripts\136Libraries\Models\MajorModel.js" />
     <Content Include="Scripts\136Libraries\Models\CourseListModel.js" />
     <Content Include="Scripts\136Libraries\Models\LoginModel.js" />
     <Content Include="Scripts\136Libraries\Models\StudentModel.js" />
     <Content Include="Scripts\136Libraries\ViewModels\AdminViewModel.js" />
-    <Content Include="Scripts\136Libraries\ViewModels\MajorListViewModel.js" />
+    <Content Include="Scripts\136Libraries\ViewModels\MajorViewModel.js" />
     <Content Include="Scripts\136Libraries\ViewModels\CourseListViewModel.js" />
     <Content Include="Scripts\136Libraries\ViewModels\LoginViewModel.js" />
     <Content Include="Scripts\136Libraries\ViewModels\StaffViewModel.js" />
@@ -187,7 +187,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Views\Admin\CreateMajor.cshtml" />
+    <Content Include="Views\Admin\EditMajor.cshtml" />
     <None Include="Views\Admin\InstructorList.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
