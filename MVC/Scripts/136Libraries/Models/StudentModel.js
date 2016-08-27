@@ -74,6 +74,24 @@ function StudentModel(asyncIndicator) {
         });
     };
 
+    this.GetAllByClass = function (id, callback) {
+        /**var url = "http://localhost:9393/Api/Student/GetStudentList?id=" + id;
+        $.ajax({
+            async: asyncIndicator,
+            method: "POST",
+            url: url,
+            data: "",
+            dataType: "json",
+            success: function (result) {
+                callback(result);
+            },
+            error: function () {
+                alert('Error while loading student list.  Is your service layer running?');
+            }
+        }); **/
+
+    };
+
     this.GetDetail = function (id, callback) {
         var url = "http://localhost:9393/Api/Student/GetStudent?id=" + id + "&bust=" + new Date();
             

@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "GetCourseListStaff";
+    var id = ViewBag.Id;
+}
+
+<h3>Course List Page</h3>
+<a href="/Staff/Index"><< back</a>
+<div id="divvCourseListStaff">
+    <table>
+        <thead>
+            <tr>
+                <th>Course Name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: viewModel">
+            <tr>
+                <td data-bind="text: title"></td>
+                <td data-bind="text: description"></td>
+                <td>
+                    <!-- Note, this is an example using knockout templating. $data is the keyword
+                        to for each element of the viewModel array -->
+                    <a data-bind="attr: { href : '/Course/?id=' + id, title: 'detail' }">Detail</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var courseListViewObj = new CourseListViewModel();
+        courseListViewObj.LoadByStaff(@id);
+    });
+</script>
