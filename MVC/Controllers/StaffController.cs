@@ -4,8 +4,9 @@
 
     public class StaffController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(string id)
         {
+            ViewBag.id = id;
             return this.View();
         }
 
