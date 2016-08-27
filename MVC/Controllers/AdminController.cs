@@ -55,5 +55,10 @@
         {
             return this.View();
         }
+
+        public ActionResult CreateMajor()
+        {
+            return this.View();
+        }
     }
 }
