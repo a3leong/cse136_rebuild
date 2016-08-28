@@ -68,5 +68,10 @@
         {
             return this.View();
         }
+
+        public ActionResult Prereqs()
+        {
+            return this.View();
+        }
     }
 }

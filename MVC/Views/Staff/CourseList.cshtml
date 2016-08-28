@@ -21,7 +21,7 @@
                 <td>
                     <!-- Note, this is an example using knockout templating. $data is the keyword
                         to for each element of the viewModel array -->
-                    <a data-bind="attr: { href : '/Course/?id=' + id, title: 'detail' }">Detail</a>
+                    <a data-bind="attr: { href : '/Admin/Prereqs?='+id, title: 'prereqs' }">Prereqs</a>
                     <a data-bind="attr: { href : '/Admin/EditCourse', title: 'edit' }">Edit</a>
                     <a data-bind="DeleteCourse: $data">Delete</a>
                 </td>
