@@ -90,7 +90,6 @@
     };
 
     this.GetDetail = function (id) {
-
         StudentModelObj.GetDetail(id, function (result) {
 
             var student = {
@@ -108,6 +107,54 @@
             }
         });
     };
+
+
+    this.GetStudentAudit = function (id) {
+        StudentModelObj.GetDetail(id, function (result) {
+            var student = {
+                id: result.StudentId,
+                first: result.FirstName,
+                last: result.LastName,
+                email: result.Email,
+                shoesize: result.ShoeSize,
+                weight: result.Weight,
+                ssn: result.SSN
+            };
+
+            if (initialBind) {
+                ko.applyBindings({ viewModel: student }, document.getElementById("divStudentContent"));
+            }
+        });
+
+        StudentModelObj.GetFinishedCourses(studentId, majorId, function (courseList) {
+            for (var i = 0; i < courseList.length; i++) {
+                courseListModel.push({
+                    id: courseList[i].CourseId,
+                    title: courseList[i].CourseTitle,
+                    description: courseList[i].CourseDescription
+                });
+            }
+
+            if (initialBind) {
+                ko.applyBindings({ viewModel: student }, document.getElementById("divStudentAuditCoursesPassed"));
+            }
+        });
+
+        StudentModelObj.GetUnfinishedCourses(studentId, majorId, function (courseList) {
+            var courseListModel = new Array();
+            for (var i = 0; i < courseList.length; i++) {
+                courseListModel.push({
+                    id: courseList[i].CourseId,
+                    title: courseList[i].CourseTitle,
+                    description: courseList[i].CourseDescription
+                });
+            }
+
+                if (initialBind) {
+                    ko.applyBindings({ viewModel: courseListModel }, document.getElementById("divStudentAuditCoursesLeft"));
+                }
+        });
+    }
 
     ko.bindingHandlers.DeleteStudent = {
         init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {

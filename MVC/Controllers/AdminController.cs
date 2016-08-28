@@ -60,5 +60,25 @@
         {
             return this.View();
         }
+
+        public ActionResult EditCourse()
+        {
+            return this.View();
+        }
+
+        public ActionResult EditInstructor()
+        {
+            return this.View();
+        }
+
+        public ActionResult CreateInstructor()
+        {
+            return this.View();
+        }
+
+        public ActionResult Prereqs()
+        {
+            return this.View();
+        }
     }
 }

@@ -1,11 +1,12 @@
 ﻿@{
-    ViewBag.Title = "List";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "StudentAudit";
+    var id = ViewBag.id;
 }
 
 <h3>Student List Page</h3>
 
-<div id="divStudentListContent">
+<h4>Student Info</h4>
+<div id="divStudentAuditStudentInfo">
     <table>
         <thead>
             <tr>
@@ -26,9 +27,49 @@
     </table>
 </div>
 
+<h4>Courses Completed</h4>
+<div id="divStudentAuditCoursesPassed">
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>title</th>
+                <th>description</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: viewModel">
+            <tr>
+                <td data-bind="text: id"></td>
+                <td data-bind="text: title"></td>
+                <td data-bind="text: description"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h4>Courses Remaining</h4>
+<div id="divStudentAuditCoursesLeft">
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>title</th>
+                <th>description</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: viewModel">
+            <tr>
+                <td data-bind="text: id"></td>
+                <td data-bind="text: title"></td>
+                <td data-bind="text: description"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
 <script type="text/javascript">
     $(document).ready(function () {
         var studentViewModelObj = new StudentViewModel();
-        studentViewModelObj.GetAll();
+        studentViewModelObj.GetAudit();
     });
 </script>

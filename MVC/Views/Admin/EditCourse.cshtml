@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "EditCourse";
+    var id = ViewBag.id;
+}
+
+<h3>Edit course</h3>
+<div id="divEditCourse">
+    <table>
+        <tr>
+            <td>Course Title:</td>
+            <td><input data-bind="value: fullname" /></td>
+        </tr>
+        <tr>
+            <td>Course Level:</td>
+            <td><input data-bind="value: shorthandname" /></td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td><input data-bind="value: description" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button data-bind="click: update">Update</button></td>
+        </tr>
+    </table>
+</div>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var courseViewModelObj = new CourseListViewModel();
+        courseViewModelObj.Update();
+    });
+</script>

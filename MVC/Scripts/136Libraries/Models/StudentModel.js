@@ -125,4 +125,10 @@ function StudentModel(asyncIndicator) {
             }
         });
     };
+
+    this.GetFinishedClasses = function(studentId,majorId, callback){
+
+    }
+    StudentModelObj.GetFinishedCourses(studentId, majorId, function (courseList) {
+
 }
