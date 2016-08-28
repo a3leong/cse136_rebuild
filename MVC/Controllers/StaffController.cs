@@ -22,6 +22,7 @@
 
         public ActionResult EditStudent(string id)
         {
+            ViewBag.id = id;
             return this.View();
         }
 

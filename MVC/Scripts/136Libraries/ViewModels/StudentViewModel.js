@@ -120,6 +120,28 @@
         });
     };
 
+    this.LoadEdit = function (id) {
+        StudentModelObj.GetDetail(id, function (result) {
+
+            var student = {
+                id: result.StudentId,
+                first: ko.observable(result.FirstName),
+                last: ko.observable(result.LastName),
+                email: ko.observable(result.Email),
+                shoesize: ko.observable(result.ShoeSize),
+                weight: ko.observable(result.Weight),
+                ssn: ko.observable(result.SSN),
+                add: function(){ 
+                    console.log("TODO add function");
+                }
+            };
+
+            if (initialBind) {
+                ko.applyBindings({ viewModel: student }, document.getElementById("divStudentContent"));
+            }
+        });
+    };
+
     this.GetDetail = function (id) {
         StudentModelObj.GetDetail(id, function (result) {
 
@@ -138,7 +160,6 @@
             }
         });
     };
-
 
     this.GetStudentAudit = function (id) {
         StudentModelObj.GetDetail(id, function (result) {

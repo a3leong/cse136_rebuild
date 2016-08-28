@@ -10,39 +10,39 @@
     <table>
         <tr>
             <td>Id</td>
-            <td><input data-bind="value: id" /></td>
+            <td><input data-bind="value: viewModel.id" /></td>
         </tr>
         <tr>
             <td>SSN</td>
-            <td><input data-bind="value: ssn" /></td>
+            <td><input data-bind="value: viewModel.ssn" /></td>
         </tr>
         <tr>
             <td>First</td>
-            <td><input data-bind="value: first" /></td>
+            <td><input data-bind="value: viewModel.first" /></td>
         </tr>
         <tr>
             <td>Last</td>
-            <td><input data-bind="value: last" /></td>
+            <td><input data-bind="value: viewModel.last" /></td>
         </tr>
         <tr>
             <td>Email</td>
-            <td><input data-bind="value: email" /></td>
+            <td><input data-bind="value: viewModel.email" /></td>
         </tr>
         <tr>
             <td>Password</td>
-            <td><input type="password" data-bind="value: password" /></td>
+            <td><input type="password" data-bind="value: viewModel.password" /></td>
         </tr>
         <tr>
             <td>Shoe Size</td>
-            <td><input data-bind="value: shoesize" /></td>
+            <td><input data-bind="value: viewModel.shoesize" /></td>
         </tr>
         <tr>
             <td>Weight</td>
-            <td><input data-bind="value: weight" /></td>
+            <td><input data-bind="value: viewModel.weight" /></td>
         </tr>
         <tr>
             <td></td>
-            <td><button data-bind="click: add">Add</button></td>
+            <td><button data-bind="click: viewModel.add">Add</button></td>
         </tr>
     </table>
 </div>
@@ -50,8 +50,6 @@
 <script type="text/javascript">
     $(document).ready(function () {
         var viewModel = new StudentViewModel();
-        //viewModel.Load(@id);
-        viewModel.Initialize();
+        viewModel.LoadEdit('@id');
     });
-
 </script>

@@ -20,19 +20,19 @@
 
     this.LoadMajor = function (id) {
         MajorModelObj.LoadMajor(id, function (majorData) {
-            var viewModel = {
+            var major = {
                 id: majorData.Id,
-                fullname: majorData.FullName,
-                shorthandname: majorData.ShorthandName,
-                description: majorData.Description,
+                fullname: ko.observable(majorData.FullName),
+                shorthandname: ko.observable(majorData.ShorthandName),
+                description: ko.observable(majorData.Description),
                 update: function () {
                     console.log("Update");
-                    self.UpdateMajor(this);
+                   // self.UpdateMajor(this);
                 }
             };
 
             // this is using knockoutjs to bind the viewModel and the view (Home/Index.cshtml)
-            ko.applyBindings(viewModel , document.getElementById("divMajorEdit"));
+            ko.applyBindings({ viewModel: major }, document.getElementById("divMajorEdit"));
         });
     };
 
@@ -54,7 +54,6 @@
                                             description: majorListData[i].Description,
                                         };
             }
-
             // this is using knockoutjs to bind the viewModel and the view (Home/Index.cshtml)
             ko.applyBindings({ viewModel: majorListViewModel }, document.getElementById("divMajorList"));
         });
