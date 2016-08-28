@@ -7,7 +7,7 @@
 
 <h4>Student Info</h4>
 <div id="divStudentAuditStudentInfo">
-    <table>
+    <table style="width:80%">
         <thead>
             <tr>
                 <th>Id</th>
@@ -16,12 +16,12 @@
                 <th>Email</th>
             </tr>
         </thead>
-        <tbody data-bind="foreach: viewModel">
+        <tbody>
             <tr>
-                <td data-bind="text: id"></td>
-                <td data-bind="text: first"></td>
-                <td data-bind="text: last"></td>
-                <td data-bind="text: email"></td>
+                <td data-bind="text: viewModel.id"></td>
+                <td data-bind="text: viewModel.first"></td>
+                <td data-bind="text: viewModel.last"></td>
+                <td data-bind="text: viewModel.email"></td>
             </tr>
         </tbody>
     </table>
@@ -29,7 +29,7 @@
 
 <h4>Courses Completed</h4>
 <div id="divStudentAuditCoursesPassed">
-    <table>
+    <table style="width:80%">
         <thead>
             <tr>
                 <th>id</th>
@@ -49,7 +49,7 @@
 
 <h4>Courses Remaining</h4>
 <div id="divStudentAuditCoursesLeft">
-    <table>
+    <table style="width:80%">
         <thead>
             <tr>
                 <th>id</th>
@@ -70,7 +70,6 @@
 <script type="text/javascript">
     $(document).ready(function () {
         var studentViewModelObj = new StudentViewModel();
-        //studentViewModelObj.GetAudit();
-        studentViewModelObj.Initialize();
+        studentViewModelObj.GetStudentAudit("@id");
     });
 </script>

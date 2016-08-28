@@ -143,9 +143,37 @@ function StudentModel(asyncIndicator) {
         });
     };
 
-    this.GetFinishedClasses = function(studentId,majorId, callback){
-        
-    }
-  //  StudentModelObj.GetFinishedCourses(studentId, majorId, function (courseList) {
+    this.GetUnfinishedCourses = function (id, callback) {
+        var unfinished = [];
+        unfinished.push({
+            id: 3,
+            title: "Fluency in Information Technology",
+            description: "get good at using tech"
+        });
+        unfinished.push({
+            id: 4,
+            title: "Data Structures",
+            description: "Learn various data structures"
+        });
 
-    }
+        callback(unfinished);
+    };
+
+    this.GetFinishedCourses = function (id, callback) {
+        // TODO Make actual ajax call isntead
+        var finished = [];
+        finished.push({
+            id: 9,
+            title: "Fluency in Information Technology",
+            description: "get good at using tech"
+        });
+        finished.push({
+            id: 10,
+            title: "Compilers",
+            description: "this is a bad class"
+        });
+
+        callback(finished);
+    };
+
+}

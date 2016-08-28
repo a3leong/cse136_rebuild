@@ -38,6 +38,7 @@
                 adapter.SelectCommand.Parameters.Add(new SqlParameter("@password", SqlDbType.VarChar, 64));
                 adapter.SelectCommand.Parameters.Add(new SqlParameter("@shoe_size", SqlDbType.Float));
                 adapter.SelectCommand.Parameters.Add(new SqlParameter("@weight", SqlDbType.Int));
+             //   adapter.SelectCommand.Parameters.Add(new SqlParameter("@major_id", SqlDbType.Int));
 
                 adapter.SelectCommand.Parameters["@student_id"].Value = student.StudentId;
                 adapter.SelectCommand.Parameters["@ssn"].Value = student.SSN;
@@ -47,6 +48,7 @@
                 adapter.SelectCommand.Parameters["@password"].Value = student.Password;
                 adapter.SelectCommand.Parameters["@shoe_size"].Value = student.ShoeSize;
                 adapter.SelectCommand.Parameters["@weight"].Value = student.Weight;
+              //  adapter.SelectCommand.Parameters["@major_id"].Value = student.Major;
 
                 var dataSet = new DataSet();
                 adapter.Fill(dataSet);
@@ -78,6 +80,7 @@
                 adapter.SelectCommand.Parameters.Add(new SqlParameter("@password", SqlDbType.VarChar, 64));
                 adapter.SelectCommand.Parameters.Add(new SqlParameter("@shoe_size", SqlDbType.Float));
                 adapter.SelectCommand.Parameters.Add(new SqlParameter("@weight", SqlDbType.Int));
+             //   adapter.SelectCommand.Parameters.Add(new SqlParameter("@major_id", SqlDbType.Int));
 
                 adapter.SelectCommand.Parameters["@student_id"].Value = student.StudentId;
                 adapter.SelectCommand.Parameters["@ssn"].Value = student.SSN;
@@ -87,6 +90,7 @@
                 adapter.SelectCommand.Parameters["@password"].Value = student.Password;
                 adapter.SelectCommand.Parameters["@shoe_size"].Value = student.ShoeSize;
                 adapter.SelectCommand.Parameters["@weight"].Value = student.Weight;
+               // adapter.SelectCommand.Parameters["@major_id"].Value = student.Major;
 
                 var dataSet = new DataSet();
                 adapter.Fill(dataSet);
@@ -166,7 +170,8 @@
                                   Password = dataSet.Tables[0].Rows[0]["password"].ToString(),
                                   ShoeSize =
                                       (float)Convert.ToDouble(dataSet.Tables[0].Rows[0]["shoe_size"].ToString()),
-                                  Weight = Convert.ToInt32(dataSet.Tables[0].Rows[0]["weight"].ToString())
+                                  Weight = Convert.ToInt32(dataSet.Tables[0].Rows[0]["weight"].ToString()),
+                         //         Major = Convert.ToInt32(dataSet.Tables[0].Rows[0]["major_id"].ToString())
                               };
 
                 if (dataSet.Tables[1] != null)
@@ -240,7 +245,8 @@
                                           ShoeSize =
                                               (float)
                                               Convert.ToDouble(dataSet.Tables[0].Rows[i]["shoe_size"].ToString()),
-                                          Weight = Convert.ToInt32(dataSet.Tables[0].Rows[i]["weight"].ToString())
+                                          Weight = Convert.ToInt32(dataSet.Tables[0].Rows[i]["weight"].ToString()),
+                                       //   Major = Convert.ToInt32(dataSet.Tables[0].Rows[i]["major_id"].ToString())
                                       };
                     studentList.Add(student);
                 }

@@ -132,7 +132,7 @@
                 weight: ko.observable(result.Weight),
                 ssn: ko.observable(result.SSN),
                 add: function(){ 
-                    console.log("TODO add function");
+                    alert("Feature not yet available");
                 }
             };
 
@@ -152,7 +152,8 @@
                 email: result.Email,
                 shoesize: result.ShoeSize,
                 weight: result.Weight,
-                ssn: result.SSN
+                ssn: result.SSN,
+                major: result.Major
             };
 
             if (initialBind) {
@@ -162,6 +163,7 @@
     };
 
     this.GetStudentAudit = function (id) {
+        console.log(id);
         StudentModelObj.GetDetail(id, function (result) {
             var student = {
                 id: result.StudentId,
@@ -170,15 +172,16 @@
                 email: result.Email,
                 shoesize: result.ShoeSize,
                 weight: result.Weight,
-                ssn: result.SSN
+                ssn: result.SSN,
             };
 
             if (initialBind) {
-                ko.applyBindings({ viewModel: student }, document.getElementById("divStudentContent"));
+                ko.applyBindings({ viewModel: student }, document.getElementById("divStudentAuditStudentInfo"));
             }
         });
 
-        StudentModelObj.GetFinishedCourses(studentId, majorId, function (courseList) {
+        StudentModelObj.GetFinishedCourses(id, function (courseList) {
+            courseListModel = new Array();
             for (var i = 0; i < courseList.length; i++) {
                 courseListModel.push({
                     id: courseList[i].CourseId,
@@ -188,11 +191,11 @@
             }
 
             if (initialBind) {
-                ko.applyBindings({ viewModel: student }, document.getElementById("divStudentAuditCoursesPassed"));
+                ko.applyBindings({ viewModel: courseListModel }, document.getElementById("divStudentAuditCoursesPassed"));
             }
         });
 
-        StudentModelObj.GetUnfinishedCourses(studentId, majorId, function (courseList) {
+        StudentModelObj.GetUnfinishedCourses(id, function (courseList) {
             var courseListModel = new Array();
             for (var i = 0; i < courseList.length; i++) {
                 courseListModel.push({
@@ -202,43 +205,12 @@
                 });
             }
 
-                if (initialBind) {
-                    ko.applyBindings({ viewModel: courseListModel }, document.getElementById("divStudentAuditCoursesLeft"));
-                }
+            if (initialBind) {
+                ko.applyBindings({ viewModel: courseListModel }, document.getElementById("divStudentAuditCoursesLeft"));
+            }
         });
 
     }
-
-    this.Initialize = function () {
-        var finished = [];
-        finished.push({
-            id: 3,
-            title: "Fluency in Information Technology",
-            description: "get good at using tech"
-        });
-        finished.push({
-            id: 4,
-            title: "Data Structures",
-            description: "Learn various data structures"
-        });
-
-        var unfinished = [];
-        unfinished.push({
-            id: 9,
-            title: "Fluency in Information Technology",
-            description: "get good at using tech"
-        });
-        unfinished.push({
-            id: 10,
-            title: "Compilers",
-            description: "this is a bad class"
-        });
-
-        ko.applyBindings({ viewModel: finished }, document.getElementById("divStudentAuditCoursesPassed"));
-        ko.applyBindings({ viewModel: unfinished }, document.getElementById("divStudentAuditCoursesLeft"));
-     
-
-    };
 
     ko.bindingHandlers.DeleteStudent = {
         init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {

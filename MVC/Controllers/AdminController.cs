@@ -81,8 +81,9 @@
             return this.View();
         }
 
-        public ActionResult StudentAudit()
+        public ActionResult StudentAudit(string id)
         {
+            ViewBag.id = id;
             return this.View();
         }
     }
