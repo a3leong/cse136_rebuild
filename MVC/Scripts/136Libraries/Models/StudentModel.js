@@ -146,14 +146,14 @@ function StudentModel(asyncIndicator) {
     this.GetUnfinishedCourses = function (id, callback) {
         var unfinished = [];
         unfinished.push({
-            id: 3,
-            title: "Fluency in Information Technology",
-            description: "get good at using tech"
+            CourseId: 3,
+            CourseTitle: "Fluency in Information Technology",
+            CourseDescription: "get good at using tech"
         });
         unfinished.push({
-            id: 4,
-            title: "Data Structures",
-            description: "Learn various data structures"
+            CourseId: 4,
+            CourseTitle: "Data Structures",
+            CourseDescription: "Learn various data structures"
         });
 
         callback(unfinished);
@@ -163,14 +163,14 @@ function StudentModel(asyncIndicator) {
         // TODO Make actual ajax call isntead
         var finished = [];
         finished.push({
-            id: 9,
-            title: "Fluency in Information Technology",
-            description: "get good at using tech"
+            CourseId: 9,
+            CourseTitle: "Fluency in Information Technology",
+            CourseDescription: "get good at using tech"
         });
         finished.push({
-            id: 10,
-            title: "Compilers",
-            description: "this is a bad class"
+            CourseId: 10,
+            CourseTitle: "Compilers",
+            CourseDescription: "this is a bad class"
         });
 
         callback(finished);
