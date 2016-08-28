@@ -90,7 +90,7 @@
 
         courseListModelObj.Update(model, function (result) {
             if (result == "ok") {
-                alert("Create student successful");
+                alert("Create course successful");
             } else {
                 alert("Error occurred");
             }

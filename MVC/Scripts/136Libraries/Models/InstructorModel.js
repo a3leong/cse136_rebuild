@@ -57,4 +57,20 @@
         });
     };
 
+    this.DeleteInstructor = function (id, callback) {
+        $.ajax({
+            async: asyncIndicator,
+            method: "POST",
+            url: "http://localhost:9393/Api/Instructor/DeleteInstructor?id=" + id,
+            data: '',
+            dataType: "json",
+            success: function (result) {
+                callback(result);
+            },
+            error: function () {
+                alert('Error while deleteing instructor.  Is your service layer running?');
+            }
+        });
+    };
+
 }

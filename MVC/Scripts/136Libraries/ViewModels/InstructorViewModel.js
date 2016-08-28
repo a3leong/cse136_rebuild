@@ -57,4 +57,20 @@
 
     };
 
+    ko.bindingHandlers.DeleteInstructor = {
+        init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+            $(element).click(function () {
+                var id = viewModel.id;
+
+                instructorModelObj.DeleteInstructor(id, function (result) {
+                    if (result != "ok") {
+                        alert("Error occurred");
+                    } else {
+                        instructorViewModel.remove(viewModel);
+                    }
+                });
+            });
+        }
+    };
+
 }
