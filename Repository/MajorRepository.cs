@@ -202,8 +202,8 @@
                     var major = new Major
                     {
                         Id = Convert.ToInt32(dataSet.Tables[0].Rows[i]["id"].ToString()),
-                        FullName = dataSet.Tables[0].Rows[i]["name"].ToString(),
-                        ShorthandName = dataSet.Tables[0].Rows[i]["display_name"].ToString(),
+                        FullName = dataSet.Tables[0].Rows[i]["full_name"].ToString(),
+                        ShorthandName = dataSet.Tables[0].Rows[i]["shorthand_name"].ToString(),
                         Description = dataSet.Tables[0].Rows[i]["description"].ToString(),
                     };
                     majorList.Add(major);

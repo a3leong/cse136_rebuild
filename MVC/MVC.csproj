@@ -189,6 +189,7 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Admin\EditMajor.cshtml" />
     <Content Include="Views\Admin\CreateCourse.cshtml" />
+    <Content Include="Views\Admin\MajorRequirements.cshtml" />
     <None Include="Views\Admin\InstructorList.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -224,6 +225,7 @@
     <Content Include="Views\Admin\MajorList.cshtml" />
     <Content Include="Views\Admin\ManageCourseSchedule.cshtml" />
     <Content Include="Views\Staff\CourseList.cshtml" />
+    <Content Include="Views\Admin\StudentAudit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = "CreateMajor";
-    var id = ViewBag.id
+    var id = ViewBag.id;
 }
 
 <h3>Edit major</h3>
@@ -9,27 +9,27 @@
     <table>
         <tr>
             <td>Id</td>
-            <td data-bind="text: id"></td>
+            <td data-bind="text: $data.id"></td>
         </tr>
         <tr>
             <td>Full Name</td>
-            <td><input data-bind="value: fullname" /></td>
+            <td><input data-bind="value: $data.fullname" /></td>
         </tr>
         <tr>
             <td>Shorthand Name</td>
-            <td><input data-bind="value: shorthandname" /></td>
+            <td><input data-bind="value: $data.shorthandname" /></td>
         </tr>
         <tr>
             <td>Description</td>
-            <td><input data-bind="value: description" /></td>
+            <td><input data-bind="value: $data.description" /></td>
         </tr>
         <tr>
             <td>Requirements</td>
-            <td><p>TODO!!</p></td>
+            <td>TODO</td>
         </tr>
         <tr>
             <td></td>
-            <td><button data-bind="click: add">Add</button></td>
+            <td><button data-bind="click: $data.add">Add</button></td>
         </tr>
     </table>
 </div>

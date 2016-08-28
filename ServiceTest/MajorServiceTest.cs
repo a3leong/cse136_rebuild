@@ -14,22 +14,6 @@
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void InsertStudentErrorTest()
-        {
-            //// Arrange
-            var errors = new List<string>();
-            var mockRepository = new Mock<IStudentRepository>();
-            var studentService = new StudentService(mockRepository.Object);
-
-            //// Act
-            studentService.InsertStudent(null, ref errors);
-
-            //// Assert
-            Assert.AreEqual(1, errors.Count);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void InsertMajorErrortNullObjectTest()
         {
             var errors = new List<string>();

@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "MajorRequirements";
+    var id = ViewBag.id;
+    var name = ViewBag.name;
+}
+
+<h3>@ViewBag.name Course Requirements</h3>
+
+<div id="divMajorRequirementListContent">
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Level</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: viewModel">
+            <tr>
+                <td data-bind="text: courseid"></td>
+                <td data-bind="text: coursename"></td>
+                <td data-bind="text: courselevel"></td>
+                <td data-bind="text: coursedescription"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var viewModel = new MajorViewModel();
+        viewModel.LoadMajorRequirements(@id);
+    });
+
+</script>

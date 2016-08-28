@@ -38,8 +38,15 @@
             return this.View();
         }
 
-        public ActionResult EditMajor(int id)
+        public ActionResult EditMajor(string id)
         {
+            ViewBag.id = id;
+            return this.View();
+        }
+
+        public ActionResult MajorRequirements(string id, string name)
+        {
+            ViewBag.name = name;
             ViewBag.id = id;
             return this.View();
         }
