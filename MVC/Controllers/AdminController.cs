@@ -58,5 +58,15 @@
         {
             return this.View();
         }
+
+        public ActionResult EditInstructor()
+        {
+            return this.View();
+        }
+
+        public ActionResult CreateInstructor()
+        {
+            return this.View();
+        }
     }
 }

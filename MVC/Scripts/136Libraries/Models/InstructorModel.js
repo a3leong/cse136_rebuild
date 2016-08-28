@@ -25,4 +25,36 @@
         });
         callback(Instructor);
     };
+
+    this.UpdateInstructor = function (instructor, callback) {
+        $.ajax({
+            method: 'POST',
+            url: "http://localhost:9393/Api/Instructor/UpdateInstructor",
+            data: instructor,
+            success: function (message) {
+                callback(message);
+            },
+            error: function () {
+                callback('Error while updating instructor info');
+            }
+        });
+
+    };
+
+    this.CreateInstructor = function (instructor, callback) {
+        $.ajax({
+            async: asyncIndicator,
+            method: "POST",
+            url: "http://localhost:9393/Api/Instructor/InsertInstructor",
+            data: instructor,
+            dataType: "json",
+            success: function (result) {
+                callback(result);
+            },
+            error: function () {
+                alert('Error while adding instructor.  Is your service layer running?');
+            }
+        });
+    };
+
 }

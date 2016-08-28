@@ -23,4 +23,38 @@
             ko.applyBindings({ viewModel: InstructorViewModel }, document.getElementById("divEditInstructors"));
         });
     };
+
+    this.UpdateInstructor = function (data) {
+        var model = {
+            FirstName: data.first_name(),
+            LastName: data.last_name(),
+            Title: data.title()   
+        };
+
+        courseModelObj.UpdateInstructor(model,  function (result) {
+            if (result == "ok") {
+                alert("Update instructor successful");
+            } else {
+                alert("Error occurred");
+            }
+        });
+    };
+
+    this.CreateInstructor = function (data) {
+        var model = {
+            FirstName: data.first_name(),
+            LastName: data.last_name(),
+            Title: data.title()
+        }
+
+        instructorModelObj.CreateInstructor(model, function (result) {
+            if (result == "ok") {
+                alert("Create instructor successful");
+            } else {
+                alert("Error occurred");
+            }
+        });
+
+    };
+
 }

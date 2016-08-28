@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "CreateInstructor";
+}
+
+<h3>Create a new instructor</h3>
+<div id="divCreateInstructor">
+    <table>
+        <tr>
+            <td>First Name</td>
+            <td><input data-bind="value: first_name" /></td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td><input data-bind="value: last_name" /></td>
+        </tr>
+        <tr>
+            <td>Title</td>
+            <td><input data-bind="value: title" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button data-bind="click: add">Add</button></td>
+        </tr>
+    </table>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var instructorViewModelObj = new InstructorViewModel();
+        instructorViewModelObj.CreateInstructor();
+    });
+</script>

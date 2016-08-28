@@ -97,4 +97,20 @@
         });
 
     };
+
+    ko.bindingHandlers.Delete = {
+        init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+            $(element).click(function () {
+                var id = viewModel.id;
+
+                courseListModelObj.Delete(id, function (result) {
+                    if (result != "ok") {
+                        alert("Error occurred");
+                    } else {
+                        courseListViewModel.remove(viewModel);
+                    }
+                });
+            });
+        }
+    };
 }

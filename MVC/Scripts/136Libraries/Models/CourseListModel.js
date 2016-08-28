@@ -59,7 +59,7 @@
         });
     };
 
-    this.Create = function (course, callback) {
+    this.Update = function (course, callback) {
         $.ajax({
             async: asyncIndicator,
             method: "POST",
@@ -71,6 +71,22 @@
             },
             error: function () {
                 alert('Error while updating course.  Is your service layer running?');
+            }
+        });
+    };
+
+    this.Delete = function (id, callback) {
+        $.ajax({
+            async: asyncIndicator,
+            method: "POST",
+            url: "http://localhost:9393/Api/Course/DeleteCourse?id=" + id,
+            data: '',
+            dataType: "json",
+            success: function (result) {
+                callback(result);
+            },
+            error: function () {
+                alert('Error while deleteing course.  Is your service layer running?');
             }
         });
     };
