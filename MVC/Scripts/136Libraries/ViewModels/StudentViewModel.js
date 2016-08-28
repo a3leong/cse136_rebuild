@@ -46,26 +46,57 @@
 
     };
 
-    this.UpdateStudent = function (data) {
-        var model = {
-            StudentId: data.id(),
-            SSN: data.ssn(),
-            FirstName: data.first(),
-            LastName: data.last(),
-            Email: data.email(),
-            Password: data.password(),
-            ShoeSize: data.shoesize(),
-            Weight: data.weight()
-        }
+    this.Load = function (id) {
+        var StudentModelObj = new StudentViewModel();
 
-        StudentModelObj.Update(model, function (result) {
+        // Because the Load() is a async call (asynchronous), we'll need to use
+        // the callback approach to handle the data after data is loaded.
+        StudentModelObj.Load(id, function (result) {
+
+            var viewModel = {
+                StudentId:  ko.observable(result.StudentId),
+                SSN:  ko.observable(result.SSN),
+                FirstName:  ko.observable(result.FirstName),
+                LastName:  ko.observable(result.LastName),
+                Email:  ko.observable(result.Email),
+                Password:  ko.observable(result.Password),
+                ShoeSize:  ko.observable(result.ShoeSize),
+                Weight:  ko.observable(result.Weight),
+                update: function() {
+                    self.UpdateStudent(this);
+                }
+            }
+
+            ko.applyBindings(viewModel , document.getElementById("divStudentEdit"));
+        });
+    };
+
+    this.UpdateStudent = function (id) {
+
+        StudentModelObj.Update(id, function(result) {
+
+            var model = {
+                StudentId: data.id(),
+                SSN: data.ssn(),
+                FirstName: data.first(),
+                LastName: data.last(),
+                Email: data.email(),
+                Password: data.password(),
+                ShoeSize: data.shoesize(),
+                Weight: data.weight()
+            }
+
+        });
+
+      /*  StudentModelObj.Update(model, function (result) {
             if (result == "ok") {
                 alert("Create student successful");
             } else {
                 alert("Error occurred");
             }
-        });
+        }); */
 
+        //ko.applyBindings(model, document.getElementById("divStudentEdit"));
     };
 
     this.GetAll = function() {

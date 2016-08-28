@@ -126,6 +126,23 @@ function StudentModel(asyncIndicator) {
         });
     };
 
+
+    this.Load = function (id, callback) {
+        $.ajax({
+            method: 'GET',
+            url: "http://localhost:9393/Api/Student/GetStudentInfo?Id=" + id,
+            data: "",
+            dataType: "json",
+            success: function (result) {
+                callback(result);
+            },
+            error: function () {
+                alert('Error while loading student info.');
+                callback("Error while loading student info");
+            }
+        });
+    };
+
     this.GetFinishedClasses = function(studentId,majorId, callback){
 
     }

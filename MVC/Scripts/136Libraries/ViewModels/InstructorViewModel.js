@@ -1,4 +1,23 @@
 ﻿function InstructorViewModel() {
+
+
+    this.Initialize = function () {
+
+        var viewModel = {
+            first_name: ko.observable("Bruce"),
+            last_name: ko.observable("Wayne"),
+            title: ko.observable("Crime Fighter")
+            //add: function (data) {
+            //    self.CreateInstructor(data);
+            //}
+        };
+
+        ko.applyBindings(viewModel, document.getElementById("divInstructorEdit"));
+    };
+
+
+
+
     this.Load = function () {
         var InstructorModelObj = new InstructorModel();
 

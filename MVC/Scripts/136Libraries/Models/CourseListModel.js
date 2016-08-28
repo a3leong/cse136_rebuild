@@ -1,5 +1,7 @@
 ﻿function CourseListModel() {
 
+
+
     this.Load = function (callback) {
         $.ajax({
             url: "http://localhost:9393/Api/Course/GetCourseList",
