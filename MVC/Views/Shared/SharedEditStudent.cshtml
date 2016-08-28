@@ -14,11 +14,11 @@
     <br />
     SSN : <input type="text" data-bind="value: $data.ssn" /><br />
     <br />
-    Email : <input type="text" data-bind="value: $data.shoesize" /><br />
+    Shoesize : <input type="text" data-bind="value: $data.shoesize" /><br />
     <br />
-    Email : <input type="text" data-bind="value: $data.weight" /><br />
+    Weight : <input type="text" data-bind="value: $data.weight" /><br />
     <br />
-    <input type="button" data-bind="value: 'Update', click: $data.update" style="margin-left:80px" />
+    <input type="button" value='Update' data-bind="click: $data.submit" style="margin-left:80px" />
     <br /><br />
     <div id="divMessage"></div>
 </div>
@@ -26,7 +26,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         var viewModel = new StudentViewModel();
-        viewModel.UpdateStudent(data);
+        //viewModel.UpdateStudent();
     });
 
 </script>
