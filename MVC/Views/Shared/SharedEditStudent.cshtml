@@ -6,27 +6,52 @@
 
 
 <div id="divStudentEdit">
-    First : <input type="text" data-bind="value: $data.first" /><br />
-    <br />
-    Last : <input type="text" data-bind="value: $data.last" /><br />
-    <br />
-    Email : <input type="text" data-bind="value: $data.email" /><br />
-    <br />
-    SSN : <input type="text" data-bind="value: $data.ssn" /><br />
-    <br />
-    Shoesize : <input type="text" data-bind="value: $data.shoesize" /><br />
-    <br />
-    Weight : <input type="text" data-bind="value: $data.weight" /><br />
-    <br />
-    <input type="button" value='Update' data-bind="click: $data.submit" style="margin-left:80px" />
-    <br /><br />
-    <div id="divMessage"></div>
+
+    <table>
+        <tr>
+            <td>Id</td>
+            <td><input data-bind="value: id" /></td>
+        </tr>
+        <tr>
+            <td>SSN</td>
+            <td><input data-bind="value: ssn" /></td>
+        </tr>
+        <tr>
+            <td>First</td>
+            <td><input data-bind="value: first" /></td>
+        </tr>
+        <tr>
+            <td>Last</td>
+            <td><input data-bind="value: last" /></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><input data-bind="value: email" /></td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td><input type="password" data-bind="value: password" /></td>
+        </tr>
+        <tr>
+            <td>Shoe Size</td>
+            <td><input data-bind="value: shoesize" /></td>
+        </tr>
+        <tr>
+            <td>Weight</td>
+            <td><input data-bind="value: weight" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button data-bind="click: add">Add</button></td>
+        </tr>
+    </table>
 </div>
 
 <script type="text/javascript">
     $(document).ready(function () {
         var viewModel = new StudentViewModel();
-        //viewModel.UpdateStudent();
+        //viewModel.Load(@id);
+        viewModel.Initialize();
     });
 
 </script>

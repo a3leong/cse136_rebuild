@@ -1,4 +1,24 @@
 ﻿function CourseListViewModel() {
+
+    this.Initialize = function () {
+
+        var viewModel = {
+            id: ko.observable(5),
+            title: ko.observable("Crime Fighting"),
+            description: ko.observable("Fight crime with Batman"),
+            //add: function (data) {
+            //    self.CreateCourse(data);
+            //}
+        };
+
+        ko.applyBindings(viewModel, document.getElementById("divEditCourse"));
+    };
+
+
+
+
+
+
     this.Load = function () {
         var courseListModelObj = new CourseListModel();
 
