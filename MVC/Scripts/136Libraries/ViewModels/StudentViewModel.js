@@ -185,7 +185,39 @@
                     ko.applyBindings({ viewModel: courseListModel }, document.getElementById("divStudentAuditCoursesLeft"));
                 }
         });
+
     }
+
+    this.Initialize = function () {
+        var finished = [];
+        finished.push({
+            id: 3,
+            title: "Fluency in Information Technology",
+            description: "get good at using tech"
+        });
+        finished.push({
+            id: 4,
+            title: "Data Structures",
+            description: "Learn various data structures"
+        });
+
+        var unfinished = [];
+        unfinished.push({
+            id: 9,
+            title: "Fluency in Information Technology",
+            description: "get good at using tech"
+        });
+        unfinished.push({
+            id: 10,
+            title: "Compilers",
+            description: "this is a bad class"
+        });
+
+        ko.applyBindings({ viewModel: finished }, document.getElementById("divStudentAuditCoursesPassed"));
+        ko.applyBindings({ viewModel: unfinished }, document.getElementById("divStudentAuditCoursesLeft"));
+     
+
+    };
 
     ko.bindingHandlers.DeleteStudent = {
         init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
@@ -215,5 +247,7 @@
             });
         }
     };
+
+    
 
 }

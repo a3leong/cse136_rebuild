@@ -4,8 +4,8 @@
 
         var viewModel = {
             id: ko.observable(5),
-            title: ko.observable("Crime Fighting"),
-            description: ko.observable("Fight crime with Batman"),
+            title: ko.observable("Fluency in Information Technology"),
+            description: ko.observable("Learn how to use various computer software tools."),
             //add: function (data) {
             //    self.CreateCourse(data);
             //}

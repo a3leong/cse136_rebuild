@@ -80,5 +80,10 @@
         {
             return this.View();
         }
+
+        public ActionResult StudentAudit()
+        {
+            return this.View();
+        }
     }
 }
