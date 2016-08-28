@@ -64,4 +64,37 @@
             }
         });
     }
+
+    this.Create = function (data) {
+        var model = {
+            Title: data.title(),
+            Level: data.level(),
+            Description: data.description()
+        }
+
+        courseListModelObj.Create(model, function (result) {
+            if (result == "ok") {
+                alert("Create course successful");
+            } else {
+                alert("Error occurred");
+            }
+        });
+    }
+
+    this.Update = function (data) {
+        var model = {
+            Title: data.title(),
+            Level: data.level(),
+            Description: data.description()
+        }
+
+        courseListModelObj.Update(model, function (result) {
+            if (result == "ok") {
+                alert("Create student successful");
+            } else {
+                alert("Error occurred");
+            }
+        });
+
+    };
 }

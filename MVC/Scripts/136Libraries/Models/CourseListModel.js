@@ -59,4 +59,20 @@
         });
     };
 
+    this.Create = function (course, callback) {
+        $.ajax({
+            async: asyncIndicator,
+            method: "POST",
+            url: "http://localhost:9393/Api/Course/UpdateCourse",
+            data: course,
+            dataType: "json",
+            success: function (result) {
+                callback(result);
+            },
+            error: function () {
+                alert('Error while updating course.  Is your service layer running?');
+            }
+        });
+    };
+
 }

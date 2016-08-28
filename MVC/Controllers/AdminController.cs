@@ -47,5 +47,10 @@
         {
             return this.View();
         }
+
+        public ActionResult EditCourse()
+        {
+            return this.View();
+        }
     }
 }
