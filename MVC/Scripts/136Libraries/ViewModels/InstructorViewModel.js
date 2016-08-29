@@ -27,19 +27,25 @@
         // the callback approach to handle the data after data is loaded.
         InstructorModelObj.Load(function (instructorData) {
 
-            // courseList - presentation layer model retrieved from /instructor/GetInstructor route.
+            // instructorList - presentation layer model retrieved from /instructor/GetInstructorList route.
             // InstructorViewModel - view model for the html content
-            var InstructorViewModel = new Array();
+            //var InstructorViewModel = new Array();
+            var InstructorViewModel = ko.observableArray();
 
             // DTO from the JSON model to the view model. In this case, InstructorViewModel doesn't need the "id" attribute
             for (var i = 0; i < instructorData.length; i++) {
-                InstructorViewModel[i] = {
-                    FirstName: instructorData[i].first_name(),
-                    LastName: instructorData[i].last_name(),
-                    Title: instructorData[i].title()
-                };
+                /*InstructorViewModel[i] = {
+                    first_name: instructorData[i].FirstName(),
+                    last_name: instructorData[i].LastName(),
+                    title: instructorData[i].Title()
+                }; */
+                InstructorViewModel.push({
+                    first_name: instructorData[i].FirstName,
+                    last_name: instructorData[i].LastName,
+                    title: instructorData[i].Title
+                });
             }
-
+            console.log(instructorData);
             // this is using knockoutjs to bind the viewModel and the view (Home/Index.cshtml)
             ko.applyBindings({ viewModel: InstructorViewModel } , document.getElementById("divEditInstructors"));
         });
