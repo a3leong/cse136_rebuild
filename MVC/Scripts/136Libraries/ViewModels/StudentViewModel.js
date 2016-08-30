@@ -181,7 +181,6 @@
         });
 
         StudentModelObj.GetFinishedCourses(id, function (courseList) {
-            console.log(courseList.length);
             courseListModel = new Array();
             for (var i = 0; i < courseList.length; i++) {
                 courseListModel.push({

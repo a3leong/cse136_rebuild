@@ -43,7 +43,7 @@
                 throw new ArgumentException();
             }
 
-            return this.repository.GetMajorDetailByShorthand(id, ref errors);
+            return this.repository.GetMajorDetail(id, ref errors);
         }
 
         public void DeleteMajor(string id, ref List<string> errors)
@@ -60,6 +60,11 @@
         public List<Major> GetMajorList(ref List<string> errors)
         {
             return this.repository.GetMajorList(ref errors);
+        }
+
+        public List<Course> GetMajorRequirements(string id, ref List<string> errors)
+        {
+            return this.repository.GetMajorRequirements(id, ref errors);
         }
 
         private bool IsValidMajor(Major major, ref List<string> errors)

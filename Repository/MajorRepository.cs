@@ -14,6 +14,7 @@
         private const string DeleteMajorInfoProcedure = "spDeleteMajorInfo";
         private const string GetMajorDetailProcedure = "spGetMajorInfo";
         private const string GetMajorListProcedure = "spGetMajorList";
+        private const string GetMajorRequirementsListProcedure = "spGetMajorRequirementsList";
 
         public void InsertMajor(Major major, ref List<string> errors)
         {
@@ -114,7 +115,7 @@
             }
         }
 
-        public Major GetMajorDetailByShorthand(string id, ref List<string> errors)
+        public Major GetMajorDetail(string id, ref List<string> errors)
         {
             var conn = new SqlConnection(ConnectionString);
             Major major = null;
@@ -125,9 +126,9 @@
                 {
                     SelectCommand = { CommandType = CommandType.StoredProcedure }
                 };
-                adapter.SelectCommand.Parameters.Add(new SqlParameter("@shorthand_name", SqlDbType.VarChar, 5));
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@id", SqlDbType.Int));
 
-                adapter.SelectCommand.Parameters["@shorthand_name"].Value = id;
+                adapter.SelectCommand.Parameters["@id"].Value = Convert.ToInt32(id);
 
                 var dataSet = new DataSet();
                 adapter.Fill(dataSet);
@@ -144,23 +145,6 @@
                     ShorthandName = dataSet.Tables[0].Rows[0]["shorthand_name"].ToString(),
                     Description = dataSet.Tables[0].Rows[0]["description"].ToString(),
                 };
-
-                /**
-                if (dataSet.Tables[1] != null)
-                {
-                    major.CourseRequirements = new List<Course>();
-                    for (var i = 0; i < dataSet.Tables[1].Rows.Count; i++)
-                    {
-                        var course = new Course
-                        {
-                            CourseId = dataSet.Tables[1].Rows[i]["course_id"].ToString(),
-                            Title = dataSet.Tables[1].Rows[i]["course_title"].ToString(),
-                            Description =
-                                dataSet.Tables[1].Rows[i]["course_description"].ToString()
-                        };
-                        major.CourseRequirements.Add(course);
-                    }
-                } **/
             }
             catch (Exception e)
             {
@@ -219,6 +203,63 @@
             }
 
             return majorList;
+        }
+
+
+        public List<Course> GetMajorRequirements(string id, ref List<string> errors)
+        {
+            var conn = new SqlConnection(ConnectionString);
+            var courseList = new List<Course>();
+
+            try
+            {
+                var adapter = new SqlDataAdapter(GetMajorRequirementsListProcedure, conn)
+                {
+                    SelectCommand =
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    }
+                };
+
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@id", SqlDbType.Int));
+
+                adapter.SelectCommand.Parameters["@id"].Value = Convert.ToInt32(id); ;
+
+
+                var dataSet = new DataSet();
+                adapter.Fill(dataSet);
+
+                if (dataSet.Tables[0].Rows.Count == 0)
+                {
+                    return null;
+                }
+
+                for (var i = 0; i < dataSet.Tables[0].Rows.Count; i++)
+                {
+                    var course = new Course
+                    {
+                        CourseId = dataSet.Tables[0].Rows[i]["course_id"].ToString(),
+                        Title = dataSet.Tables[0].Rows[i]["course_title"].ToString(),
+                        CourseLevel =
+                            (CourseLevel)
+                            Enum.Parse(
+                                typeof(CourseLevel),
+                                dataSet.Tables[0].Rows[i]["course_level"].ToString()),
+                        Description = dataSet.Tables[0].Rows[i]["course_description"].ToString()
+                    };
+                    courseList.Add(course);
+                }
+            }
+            catch (Exception e)
+            {
+                errors.Add("Error: " + e);
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+
+            return courseList;
         }
     }
 }
