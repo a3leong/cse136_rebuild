@@ -61,8 +61,9 @@
             return this.View();
         }
 
-        public ActionResult EditCourse()
+        public ActionResult EditCourse(string id)
         {
+            ViewBag.id = id;
             return this.View();
         }
 

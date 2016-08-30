@@ -73,6 +73,7 @@
                 data: instructor,
                 dataType: "json",
                 success: function (result) {
+                    alert('Successfully added instructor!');
                     callback(result);
                 },
                 error: function () {

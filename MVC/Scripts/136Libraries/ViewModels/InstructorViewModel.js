@@ -27,8 +27,6 @@
             Title: data.title()
         };
 
-        console.log(model.first_name);
-
         var instructorModelObj = new InstructorModel();
 
         instructorModelObj.UpdateInstructor(model, function (result) {

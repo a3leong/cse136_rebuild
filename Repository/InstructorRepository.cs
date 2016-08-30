@@ -88,7 +88,6 @@
         public void DeleteInstructor(string string_id, ref List<string> errors)
         {
             var conn = new SqlConnection(ConnectionString);
-            Debug.WriteLine(string_id);
             int id = Convert.ToInt32(string_id);
 
             try

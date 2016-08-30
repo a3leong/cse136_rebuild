@@ -3,8 +3,12 @@
 }
 
 <h3>Create a new course</h3>
-<div id="divCourse">
+<div id="divCreateCourses">
     <table>
+        <tr>
+            <td>Course Id:</td>
+            <td><input data-bind="value: id" /></td>
+        </tr>
         <tr>
             <td>Course Title:</td>
             <td><input data-bind="value: title" /></td>
@@ -26,7 +30,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        var courseListViewModelObj = new CourseListViewModel();
-        courseListViewModelObj.Create();
+        var courseView = new CourseListViewModel();
+        courseView.HelpCreateCourse();
     });
 </script>
