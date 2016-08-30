@@ -62,14 +62,14 @@
                     SelectCommand = { CommandType = CommandType.StoredProcedure }
                 };
 
-                adapter.SelectCommand.Parameters.Add(new SqlParameter("@instructor_id", SqlDbType.Int));
-                adapter.SelectCommand.Parameters.Add(new SqlParameter("@first_name", SqlDbType.VarChar, 50));
-                adapter.SelectCommand.Parameters.Add(new SqlParameter("@last_name", SqlDbType.VarChar, 50));
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@id", SqlDbType.Int));
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@first", SqlDbType.VarChar, 50));
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@last", SqlDbType.VarChar, 50));
                 adapter.SelectCommand.Parameters.Add(new SqlParameter("@title", SqlDbType.VarChar, 50));
 
-                adapter.SelectCommand.Parameters["@instructor_id"].Value = instructor.InstructorId;
-                adapter.SelectCommand.Parameters["@first_name"].Value = instructor.FirstName;
-                adapter.SelectCommand.Parameters["@last_name"].Value = instructor.LastName;
+                adapter.SelectCommand.Parameters["@id"].Value = instructor.InstructorId;
+                adapter.SelectCommand.Parameters["@first"].Value = instructor.FirstName;
+                adapter.SelectCommand.Parameters["@last"].Value = instructor.LastName;
                 adapter.SelectCommand.Parameters["@title"].Value = instructor.Title;
 
                 var dataSet = new DataSet();

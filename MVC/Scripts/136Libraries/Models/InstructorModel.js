@@ -26,7 +26,7 @@
     this.UpdateInstructor = function (instructor, callback) {
         $.ajax({
             method: 'POST',
-            url: "http://localhost:9393/Api/Instructor/UpdateInstructor?Instructor="+instructor,
+            url: "http://localhost:9393/Api/Instructor/UpdateInstructor",
             data: instructor,
             success: function (message) {
                 if (message == "ok") {

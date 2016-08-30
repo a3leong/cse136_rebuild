@@ -1,18 +1,19 @@
 ﻿function InstructorViewModel() {
 
     var self = this;
-    this.Initialize = function () {
+    this.InitializeInstructorEdit = function () {
 
         var viewModel = {
-            first_name: ko.observable("Bruce"),
-            last_name: ko.observable("Wayne"),
-            title: ko.observable("Crime Fighter")
-            //add: function (data) {
-            //    self.CreateInstructor(data);
-            //}
+            id: ko.observable("500"),
+            first_name: ko.observable("derp"),
+            last_name: ko.observable("derp"),
+            title: ko.observable("derp"),
+            update: function () {
+                self.UpdateInstructor(this);
+            }
         };
 
-        ko.applyBindings(viewModel, document.getElementById("divInstructorEdit"));
+        ko.applyBindings( viewModel, document.getElementById("divInstructorEdit"));
     };
 
 
@@ -21,24 +22,12 @@
     this.Load = function () {
         var InstructorModelObj = new InstructorModel();
 
-        //alert('Yo, this is the load of InstructorViewModel');
-
-        // Because the Load() is a async call (asynchronous), we'll need to use
-        // the callback approach to handle the data after data is loaded.
         InstructorModelObj.Load(function (instructorData) {
 
-            // instructorList - presentation layer model retrieved from /instructor/GetInstructorList route.
-            // InstructorViewModel - view model for the html content
-            //var InstructorViewModel = new Array();
             var InstructorViewModel = ko.observableArray();
 
             // DTO from the JSON model to the view model. In this case, InstructorViewModel doesn't need the "id" attribute
             for (var i = 0; i < instructorData.length; i++) {
-                /*InstructorViewModel[i] = {
-                    first_name: instructorData[i].FirstName(),
-                    last_name: instructorData[i].LastName(),
-                    title: instructorData[i].Title()
-                }; */
                 InstructorViewModel.push({
                     id: instructorData[i].InstructorId,
                     first_name: instructorData[i].FirstName,
@@ -46,7 +35,7 @@
                     title: instructorData[i].Title
                 });
             }
-            console.log(instructorData);
+            //console.log(instructorData);
             // this is using knockoutjs to bind the viewModel and the view (Home/Index.cshtml)
             ko.applyBindings({ viewModel: InstructorViewModel } , document.getElementById("divEditInstructors"));
         });
@@ -54,12 +43,17 @@
 
     this.UpdateInstructor = function (data) {
         var model = {
+            id: data.InstructorId,
             first_name: data.FirstName,
             last_name: data.LastName,
             title: data.Title   
         };
 
-        courseModelObj.UpdateInstructor(model,  function (result) {
+        alert("Value of id is:" + model.id);
+
+        var instructorModelObj = new InstructorModel();
+
+        instructorModelObj.UpdateInstructor(model,  function (result) {
             if (result == "ok") {
                 alert("Update instructor successful");
             } else {
