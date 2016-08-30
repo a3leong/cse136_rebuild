@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using IRepository;
     using POCO;
+    using System.Diagnostics;
 
     public class InstructorService
     {
@@ -23,6 +24,10 @@
         {
             if (!this.IsValidInstructor(instructor, ref errors))
             {
+                for (int i = 0; i < errors.Count; i++ )
+                {
+                    Debug.WriteLine(errors[i]);
+                }
                 throw new ArgumentException();
             }
 
@@ -33,6 +38,7 @@
         {
             if (!this.IsValidInstructor(instructor, ref errors))
             {
+
                 throw new ArgumentException();
             }
 

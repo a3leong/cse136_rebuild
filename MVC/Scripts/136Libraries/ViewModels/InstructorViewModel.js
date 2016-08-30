@@ -1,6 +1,6 @@
 ﻿function InstructorViewModel() {
 
-
+    var self = this;
     this.Initialize = function () {
 
         var viewModel = {
@@ -53,9 +53,9 @@
 
     this.UpdateInstructor = function (data) {
         var model = {
-            FirstName: data.first_name(),
-            LastName: data.last_name(),
-            Title: data.title()   
+            first_name: data.FirstName,
+            last_name: data.LastName,
+            title: data.Title   
         };
 
         courseModelObj.UpdateInstructor(model,  function (result) {
@@ -67,14 +67,31 @@
         });
     };
 
+    this.HelpCreateInstructor = function () {
+
+        var viewModel = {
+            id: ko.observable("enter id here"),
+            first_name: ko.observable("enter first name here"),
+            last_name: ko.observable("enter last name here"),
+            title: ko.observable("enter position here"),
+            add: function (data) {
+                self.CreateInstructor(data);
+            }
+        };
+
+        ko.applyBindings(viewModel, document.getElementById("divCreateInstructor"));
+    };
+
     this.CreateInstructor = function (data) {
-        var model = {
-            FirstName: data.first_name(),
-            LastName: data.last_name(),
-            Title: data.title()
+        var instructorModelObj = new InstructorModel();
+        var instructor = {
+            InstructorId: data.id,
+            FirstName: data.first_name,
+            LastName: data.last_name,
+            Title: data.title
         }
 
-        instructorModelObj.CreateInstructor(model, function (result) {
+        instructorModelObj.CreateInstructor(instructor, function (result) {
             if (result == "ok") {
                 alert("Create instructor successful");
             } else {

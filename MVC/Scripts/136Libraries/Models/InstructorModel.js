@@ -47,7 +47,7 @@
 
     this.CreateInstructor = function (instructor, callback) {
         $.ajax({
-            async: asyncIndicator,
+            //async: asyncIndicator,
             method: "POST",
             url: "http://localhost:9393/Api/Instructor/InsertInstructor",
             data: instructor,
