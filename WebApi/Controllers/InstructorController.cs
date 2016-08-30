@@ -6,7 +6,7 @@
     using IRepository;
     using Repository;
     using Service;
-
+    using System.Diagnostics;
     public class InstructorController : ApiController
     {
         [HttpGet]
@@ -68,6 +68,10 @@
             if (errors.Count == 0)
             {
                 return "ok";
+            }
+            for (int i = 0; i < errors.Count; i++)
+            {
+                Debug.WriteLine(errors[i]);
             }
             return "error";
         }

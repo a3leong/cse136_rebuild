@@ -6,13 +6,14 @@
     using System.Data.SqlClient;
     using IRepository;
     using POCO;
+    using System.Diagnostics;
 
     public class InstructorRepository : BaseRepository, IInstructorRepository
     {
         private const string InsertInstructorInfoProcedure = "spInsertInstructor";
-        private const string UpdateInstructorInfoProcedure = "spUpdateInstructorInfo";
-        private const string DeletInstructorInfoProcedure = "spDeleteInstructorInfo";
-        private const string GetInstructorDetailProcedure = "spGetInstructorInfo";
+        private const string UpdateInstructorInfoProcedure = "spUpdateInstructor";
+        private const string DeletInstructorInfoProcedure = "spDeleteInstructor";
+        private const string GetInstructorDetailProcedure = "spGetInstructor";
         private const string GetInstructorListProcedure = "spGetInstructorList";
 
         public void InsertInstructor(Instructor instructor, ref List<string> errors)
@@ -84,9 +85,11 @@
             }
         }
 
-        public void DeleteInstructor(string id, ref List<string> errors)
+        public void DeleteInstructor(string string_id, ref List<string> errors)
         {
             var conn = new SqlConnection(ConnectionString);
+            Debug.WriteLine(string_id);
+            int id = Convert.ToInt32(string_id);
 
             try
             {
@@ -99,9 +102,9 @@
                             .StoredProcedure
                     }
                 };
-                adapter.SelectCommand.Parameters.Add(new SqlParameter("@instructor_id", SqlDbType.VarChar, 20));
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@id", SqlDbType.VarChar, 20));
 
-                adapter.SelectCommand.Parameters["@instructor_id"].Value = id;
+                adapter.SelectCommand.Parameters["@id"].Value = id;
 
                 var dataSet = new DataSet();
                 adapter.Fill(dataSet);

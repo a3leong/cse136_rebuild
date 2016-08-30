@@ -40,6 +40,7 @@
                     title: instructorData[i].Title()
                 }; */
                 InstructorViewModel.push({
+                    id: instructorData[i].InstructorId,
                     first_name: instructorData[i].FirstName,
                     last_name: instructorData[i].LastName,
                     title: instructorData[i].Title
@@ -105,12 +106,13 @@
         init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
             $(element).click(function () {
                 var id = viewModel.id;
+                var instructorModelObj = new InstructorModel();
 
                 instructorModelObj.DeleteInstructor(id, function (result) {
                     if (result != "ok") {
                         alert("Error occurred");
                     } else {
-                        instructorViewModel.remove(viewModel);
+                        alert("Deletion success!")
                     }
                 });
             });
