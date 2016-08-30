@@ -1,22 +1,45 @@
 ﻿function InstructorViewModel() {
 
     var self = this;
-    this.InitializeInstructorEdit = function () {
+    this.InitializeInstructorEdit = function (id) {
+        var instructorModelObj = new InstructorModel();
+        instructorModelObj.GetInstructor(id, function (instructorData) {
+            var viewModel = {
+                id: ko.observable(instructorData.InstructorId),
+                first_name: ko.observable(instructorData.FirstName),
+                last_name: ko.observable(instructorData.LastName),
+                title: ko.observable(instructorData.Title),
+                update: function () {
+                    self.UpdateInstructor(this);
+                }
+            };
 
-        var viewModel = {
-            id: ko.observable("500"),
-            first_name: ko.observable("derp"),
-            last_name: ko.observable("derp"),
-            title: ko.observable("derp"),
-            update: function () {
-                self.UpdateInstructor(this);
-            }
-        };
-
-        ko.applyBindings( viewModel, document.getElementById("divInstructorEdit"));
+            ko.applyBindings(viewModel, document.getElementById("divInstructorEdit"));
+        })
+        
     };
 
+    this.UpdateInstructor = function (data) {
+        var model = {
+            InstructorId: data.id(),
+            FirstName: data.first_name(),
+            LastName: data.last_name(),
+            Title: data.title()
+        };
 
+        console.log(model.first_name);
+
+        var instructorModelObj = new InstructorModel();
+
+        instructorModelObj.UpdateInstructor(model, function (result) {
+            if (result == "ok") {
+                alert("Update instructor successful");
+                location.reload();
+            } else {
+                alert("Error occurred");
+            }
+        });
+    };
 
 
     this.Load = function () {
@@ -41,26 +64,7 @@
         });
     };
 
-    this.UpdateInstructor = function (data) {
-        var model = {
-            id: data.InstructorId,
-            first_name: data.FirstName,
-            last_name: data.LastName,
-            title: data.Title   
-        };
-
-        alert("Value of id is:" + model.id);
-
-        var instructorModelObj = new InstructorModel();
-
-        instructorModelObj.UpdateInstructor(model,  function (result) {
-            if (result == "ok") {
-                alert("Update instructor successful");
-            } else {
-                alert("Error occurred");
-            }
-        });
-    };
+    
 
     this.HelpCreateInstructor = function () {
 

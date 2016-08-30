@@ -130,9 +130,9 @@
                 {
                     SelectCommand = { CommandType = CommandType.StoredProcedure }
                 };
-                adapter.SelectCommand.Parameters.Add(new SqlParameter("@instructor_id", SqlDbType.VarChar, 20));
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@id", SqlDbType.Int));
 
-                adapter.SelectCommand.Parameters["@instructor_id"].Value = id;
+                adapter.SelectCommand.Parameters["@id"].Value = Convert.ToInt32(id);
 
                 var dataSet = new DataSet();
                 adapter.Fill(dataSet);

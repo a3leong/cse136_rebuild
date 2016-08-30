@@ -7,6 +7,10 @@
 <div id="divInstructorEdit">
     <table>
         <tr>
+            <td>Id</td>
+            <td data-bind="text: id"></td>
+        </tr>
+        <tr>
             <td>First Name</td>
             <td><input data-bind="value: first_name" /></td>
         </tr>
@@ -29,6 +33,6 @@
     $(document).ready(function () {
         var instructorViewModelObj = new InstructorViewModel();
         //instructorViewModelObj.UpdateInstructor();
-        instructorViewModelObj.InitializeInstructorEdit();
+        instructorViewModelObj.InitializeInstructorEdit(@id);
     });
 </script>

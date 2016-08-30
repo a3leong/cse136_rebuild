@@ -24,6 +24,9 @@
             var repository = new InstructorRepository();
             var service = new InstructorService(repository);
             var errors = new List<string>();
+
+     
+            
             return service.GetInstructor(id, ref errors);
         }
 
