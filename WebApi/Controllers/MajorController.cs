@@ -24,6 +24,20 @@
         }
 
         [HttpGet]
+        public List<Major> GetMajorList()
+        {
+            var repository = new MajorRepository();
+            var service = new MajorService(repository);
+            var errors = new List<string>();
+            List<Major> majorList = service.GetMajorList(ref errors);
+            if (errors.Count!=0 || majorList.Count==0)
+            {
+                return null;
+            }
+            return majorList;
+        }
+
+        [HttpGet]
         public List<Course> GetMajorRequirements(string id)
         {
             var repository = new MajorRepository();

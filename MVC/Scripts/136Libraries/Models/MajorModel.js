@@ -29,9 +29,9 @@
     }
 
     this.LoadMajorList = function (callback) {
-  /**      $.ajax({
+        $.ajax({
+            method: "GET",
             url: "http://localhost:9393/Api/Major/GetMajorList",
-            data: "",
             dataType: "json",
             success: function (courseListData) {
                 callback(courseListData);
@@ -39,21 +39,7 @@
             error: function () {
                 alert('Error while loading course list.  Is your service layer running?');
             }
-        });  We do this for part 5 **/
-        var MajorList = [];
-        MajorList.push({
-            Id: 1,
-            FullName: "Computer Science",
-            ShorthandName: "CS1",
-            Description: "Learn how to hello world."
-        });
-        MajorList.push({
-            Id: 2,
-            FullName: "Computer Science2",
-            ShorthandName: "CS2",
-            Description: "Learn how search Stack Overflow."
-        });
-        callback(MajorList);
+        }); 
     };
 
 
@@ -75,24 +61,5 @@
                 alert('Error while loading course list.  Is your service layer running?');
             }
         });
-        /**           courseid: requirementListData[i].CourseId,
-                    coursetitle: requirementListData[i].Title,
-                    courselevel: requirementListData.CourseLevel,
-                    coursedescription: requirementListData[i].Description, **/
-  /**      var RequirementList = [];
-        RequirementList.push({
-            CourseId: 1,
-            Title: "CS3",
-            CourseLevel: "2",
-            Description: "Learn C pointers and build a reduced C Compiler."
-        });
-        RequirementList.push({
-            CourseId: 2,
-            Title: "CS136",
-            CourseLevel: "2",
-            Description: "Learn how to build an enterprise web application."
-        });
-        callback(RequirementList);
-        **/
     };
 }
