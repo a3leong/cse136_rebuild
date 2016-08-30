@@ -1,5 +1,21 @@
 ﻿function MajorViewModel() {
     var MajorModelObj = new MajorModel();
+    var self = this;
+
+    this.LoadMajor = function (id) {
+        MajorModelObj.LoadMajor(id, function (majorData) {
+            var viewModel = {
+                id: ko.observable(majorData.Id),
+                fullname: ko.observable(majorData.FullName),
+                shorthandname: ko.observable(majorData.ShorthandName),
+                description: ko.observable(majorData.Description),
+                update: function () {
+                    self.UpdateMajor(this);
+                }
+            };
+            ko.applyBindings(viewModel, document.getElementById("divMajorEdit"));
+        });
+    };
 
     this.UpdateMajor = function (data) {
         var model = {
@@ -9,28 +25,15 @@
             Description: data.description()
         }
 
+        alert(model.FullName);
+
         MajorModelObj.Update(model, function (result) {
             if (result == "ok") {
-                alert("Create student successful");
+                alert("Update student successful");
+                location.reload();
             } else {
                 alert("Error occurred");
             }
-        });
-    };
-
-    this.LoadMajor = function (id) {
-        MajorModelObj.LoadMajor(id, function (majorData) {
-            var major = {
-                id: majorData.Id,
-                fullname: ko.observable(majorData.FullName),
-                shorthandname: ko.observable(majorData.ShorthandName),
-                description: ko.observable(majorData.Description),
-                update: function () {
-                    console.log("Update");
-                   // self.UpdateMajor(this);
-                }
-            };
-            ko.applyBindings({ viewModel: major }, document.getElementById("divMajorEdit"));
         });
     };
 

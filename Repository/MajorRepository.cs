@@ -126,9 +126,9 @@
                 {
                     SelectCommand = { CommandType = CommandType.StoredProcedure }
                 };
-                adapter.SelectCommand.Parameters.Add(new SqlParameter("@shorthand_name", SqlDbType.VarChar, 5));
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@id", SqlDbType.Int));
 
-                adapter.SelectCommand.Parameters["@shorthand_name"].Value = id;
+                adapter.SelectCommand.Parameters["@id"].Value = Convert.ToInt32(id);
 
                 var dataSet = new DataSet();
                 adapter.Fill(dataSet);
@@ -145,23 +145,6 @@
                     ShorthandName = dataSet.Tables[0].Rows[0]["shorthand_name"].ToString(),
                     Description = dataSet.Tables[0].Rows[0]["description"].ToString(),
                 };
-
-                /**
-                if (dataSet.Tables[1] != null)
-                {
-                    major.CourseRequirements = new List<Course>();
-                    for (var i = 0; i < dataSet.Tables[1].Rows.Count; i++)
-                    {
-                        var course = new Course
-                        {
-                            CourseId = dataSet.Tables[1].Rows[i]["course_id"].ToString(),
-                            Title = dataSet.Tables[1].Rows[i]["course_title"].ToString(),
-                            Description =
-                                dataSet.Tables[1].Rows[i]["course_description"].ToString()
-                        };
-                        major.CourseRequirements.Add(course);
-                    }
-                } **/
             }
             catch (Exception e)
             {
