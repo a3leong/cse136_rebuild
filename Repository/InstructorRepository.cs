@@ -203,7 +203,15 @@
                 conn.Dispose();
             }
 
-            return instructorList;
+            if (instructorList.Count == 0)
+            {
+                errors.Add("Error: no data returned.");
+                return null;
+            }
+            else
+            {
+                return instructorList;
+            }
         }
     }
 }

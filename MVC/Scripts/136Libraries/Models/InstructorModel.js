@@ -1,38 +1,42 @@
 ﻿function InstructorModel() {
 
+    var instructorViewModel = new InstructorViewModel();
+
     this.Load = function (callback) {
-        /**      $.ajax({
-                  url: "http://localhost:9393/Api/Instructor/GetInstructor",
+              $.ajax({
+                  method: 'GET',
+                  url: "http://localhost:9393/Api/Instructor/GetInstructorList",
                   data: "",
                   dataType: "json",
                   success: function (instructorData) {
-                      callback(instructorData);
+                      if (instructorData == null) {
+                          alert('Error while loading instructors. Did something go wrong?');
+                          return;
+                      } else {
+                          //alert('Call back is here! Data obtained!');
+                          callback(instructorData);
+                      }
                   },
                   error: function () {
                       alert('Error while loading instructors.  Is your service layer running?');
                   }
-              });  We do this for part 5 **/
-        var Instructor = [];
-        Instructor.push({
-           first_name: "Gary",
-            last_name: "Gillispie",
-            title: "Professor"
-        });
-        Instructor.push({
-            first_name: "Richard",
-            last_name: "Ord",
-            title: "Maestro"
-        });
-        callback(Instructor);
+              }); 
     };
 
     this.UpdateInstructor = function (instructor, callback) {
         $.ajax({
             method: 'POST',
-            url: "http://localhost:9393/Api/Instructor/UpdateInstructor",
+            url: "http://localhost:9393/Api/Instructor/UpdateInstructor?Instructor="+instructor,
             data: instructor,
             success: function (message) {
-                callback(message);
+                if (message == "ok") {
+                    callback(message);
+                }
+                else
+                {
+                    alert("Error while updating instructor info");
+                    return;
+                }
             },
             error: function () {
                 callback('Error while updating instructor info');

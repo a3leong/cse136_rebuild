@@ -14,6 +14,11 @@
             this.repository = repository;
         }
 
+        public List<Instructor> GetInstructorList(ref List<string> errors)
+        {
+            return repository.GetInstructorList(ref errors);
+        }
+
         public void InsertInstructor(Instructor instructor, ref List<string> errors)
         {
             if (!this.IsValidInstructor(instructor, ref errors))
