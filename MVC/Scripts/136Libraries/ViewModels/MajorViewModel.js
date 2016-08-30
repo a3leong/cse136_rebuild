@@ -30,8 +30,6 @@
                    // self.UpdateMajor(this);
                 }
             };
-
-            // this is using knockoutjs to bind the viewModel and the view (Home/Index.cshtml)
             ko.applyBindings({ viewModel: major }, document.getElementById("divMajorEdit"));
         });
     };

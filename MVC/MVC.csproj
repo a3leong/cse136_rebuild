@@ -193,6 +193,7 @@
     <Content Include="Views\Admin\EditInstructor.cshtml" />
     <Content Include="Views\Admin\CreateInstructor.cshtml" />
     <Content Include="Views\Admin\MajorRequirements.cshtml" />
+    <Content Include="Views\Admin\CreateMajor.cshtml" />
     <None Include="Views\Admin\InstructorList.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

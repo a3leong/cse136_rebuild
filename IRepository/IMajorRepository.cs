@@ -12,7 +12,9 @@
 
         void DeleteMajor(string shorthand_id, ref List<string> errors);
 
-        Major GetMajorDetailByShorthand(string shorthand_id, ref List<string> errors);
+        Major GetMajorDetail(string shorthand_id, ref List<string> errors);
+
+        List<Course> GetMajorRequirements(string id, ref List<string> errors);
 
         List<Major> GetMajorList(ref List<string> errors);
     }
