@@ -92,5 +92,15 @@
         {
             return repository.GetUnfinishedCoursesByStudent(id, ref errors);
         }
+
+        public void InsertPrereq(string cid, string pid, ref List<string> errors)
+        {
+            repository.InsertPrereq(cid, pid, ref errors);
+        }
+
+        public void DeletePrereq(string cid, string pid, ref List<string> errors)
+        {
+            repository.DeletePrereq(cid, pid, ref errors);
+        }
     }
 }

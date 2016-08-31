@@ -94,5 +94,35 @@
             }
             return "error";
         }
+
+        [HttpPost]
+        public string InsertRequirement(string major_id, string course_id)
+        {
+            var repository = new MajorRepository();
+            var service = new MajorService(repository);
+            var errors = new List<string>();
+            service.InsertRequirement(major_id, course_id, ref errors);
+            if(errors.Count == 0)
+            {
+                return "ok";
+            }
+
+            return "error";
+        }
+
+        [HttpPost]
+        public string DeleteRequirement(string major_id, string course_id)
+        {
+            var repository = new MajorRepository();
+            var service = new MajorService(repository);
+            var errors = new List<string>();
+            service.DeleteRequirement(major_id, course_id, ref errors);
+            if(errors.Count == 0)
+            {
+                return "ok";
+            }
+
+            return "error";
+        }
     }
 }

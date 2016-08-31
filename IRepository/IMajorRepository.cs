@@ -17,5 +17,9 @@
         List<Course> GetMajorRequirements(string id, ref List<string> errors);
 
         List<Major> GetMajorList(ref List<string> errors);
+
+        void InsertRequirement(string major_id, string course_id, ref List<string> errors);
+
+        void DeleteRequirement(string major_id, string course_id, ref List<string> errors);
     }
 }

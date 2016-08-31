@@ -114,5 +114,16 @@
 
             return true;
         }
+
+        public void InsertRequirement(string major_id, string course_id, ref List<string> errors)
+        {
+            repository.InsertRequirement(major_id, course_id, ref errors);
+        }
+
+        public void DeleteRequirement(string major_id, string course_id, ref List<string> errors)
+        {
+            repository.DeleteRequirement(major_id, course_id, ref errors);
+        }
+
     }
 }
