@@ -2,7 +2,7 @@
 
 
 
-    this.Load = function (callback) {
+    this.GetCourseList = function (callback) {
         $.ajax({
             url: "http://localhost:9393/Api/Course/GetCourseList",
             data: "",
@@ -14,35 +14,6 @@
                 alert('Error while loading course list.  Is your service layer running?');
             }
         });
-    };
-
-    this.LoadByStaff = function (id, callback) {
-        // TODO, change to commented out version
-        $.ajax({
-            url: "http://localhost:9393/Api/Course/GetCourseList",
-            data: "",
-            dataType: "json",
-            success: function (courseListData) {
-                callback(courseListData);
-            },
-            error: function () {
-                alert('Error while loading course list.  Is your service layer running?');
-            }
-        });
-
-        /**
-         $.ajax({
-             url: "http://localhost:9393/Api/Course/GetCourseListByStaff?id=" + id,
-             data: "",
-             dataType: "json",
-             success: function (courseListData) {
-                 callback(courseListData);
-             },
-             error: function () {
-                 alert('Error while loading course list.  Is your service layer running?');
-             }
-         });
-         **/
     };
 
     this.CreateCourse = function (course, callback) {
@@ -93,7 +64,73 @@
         });
     };
 
+    this.GetCourseListExcludeId = function (id, callback) {
+        // TODO change to this when john's code actually supports this
+        /** $.ajax({
+             method: "GET",
+             url: "http://localhost:9393/Api/Course/GetCourseListExcludeId?id=" + id,
+             data: "",
+             dataType: "json",
+             success: function (courseListData) {
+                 callback(courseListData);
+             },
+             error: function () {
+                 alert('Error while loading course list.  Is your service layer running?');
+             }
+         });  **/
+
+        $.ajax({
+            url: "http://localhost:9393/Api/Course/GetCourseList",
+            data: "",
+            dataType: "json",
+            success: function (courseListData) {
+                callback(courseListData);
+            },
+            error: function () {
+                alert('Error while loading course list.  Is your service layer running?');
+            }
+        });
+    }
+
+    this.CreatePrereq = function (parentid, childid, callback) {
+        // TODO use when john's api supports
+        /**
+        $.ajax({
+            url: "http://localhost:9393/Api/Course/CreatePrereq?parentid="+parentid+"&childid="+childid,
+            data: "",
+            dataType: "json",
+            success: function (response) {
+                if( response===null) {
+                    alert('Error creating prerec, response is null')
+                    return;
+                }
+                callback(response);
+            },
+            error: function () {
+                alert('Error while creating prereq.  Is your service layer running?');
+            }
+        });
+        **/
+
+        callback("ok");
+
+    }
+
     this.LoadPrereqs = function (id, callback) {
+        // TODO change to this when john's code actually supports this
+       /** $.ajax({
+            method: "GET",
+            url: "http://localhost:9393/Api/Course/GetCoursePrereqs?id=" + id,
+            data: "",
+            dataType: "json",
+            success: function (courseListData) {
+                callback(courseListData);
+            },
+            error: function () {
+                alert('Error while loading course list.  Is your service layer running?');
+            }
+        });  **/
+
         $.ajax({
             url: "http://localhost:9393/Api/Course/GetCourseList",
             data: "",

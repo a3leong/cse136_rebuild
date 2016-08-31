@@ -20,7 +20,16 @@
             </tr>
         </tbody>
     </table>
-    <a data-bind="attr: { href : '/Admin/Prereqs?='+id, title: 'add' }">Add Prereq</a>
+</div>
+<div id="divCoursePrereqsAdd">
+    <h4>Add a new prereq</h4>
+    <span>
+        <label>Child course:</label>
+        <select data-bind="options: availablecourses,
+                           optionsText: 'title',
+                           value: selected"></select>
+    </span>
+    <button data-bind="click:createprereq">Add</button>
 </div>
 
 <script type="text/html" id="action-template">

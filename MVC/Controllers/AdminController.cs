@@ -78,8 +78,9 @@
             return this.View();
         }
 
-        public ActionResult Prereqs()
+        public ActionResult Prereqs(string id)
         {
+            ViewBag.id = id;
             return this.View();
         }
 

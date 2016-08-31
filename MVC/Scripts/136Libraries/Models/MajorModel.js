@@ -35,7 +35,7 @@
             url: "http://localhost:9393/Api/Major/GetMajor?id="+id,
             dataType: "json",
             success: function (majorData) {
-                if (majorData === null) {
+                if (majorData === null) {CreateRequirement
                     alert("Error, no data found");
                     return;
                 }
@@ -80,5 +80,24 @@
                 alert('Error while loading requirements list.  Is your service layer running?');
             }
         });
+    };
+
+    this.CreateRequirement = function (majorid, courseid, callback) {
+        callback("ok");
+        // TODO ajax
+      /**  $.ajax({
+            method: "POST",
+            url: "http://localhost:9393/Api/Major/CreateMajorRequirement?majorid=" + id+"&courseid="+courseid,
+            dataType: "json",
+            success: function (response) {
+                if (response === null) {
+                    alert("Error creating major requirement relationship");
+                }
+                callback(response);
+            },
+            error: function () {
+                alert('Error while creating major requirement.  Is your service layer running?');
+            }
+        }); **/
     };
 }

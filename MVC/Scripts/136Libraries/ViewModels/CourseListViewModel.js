@@ -42,7 +42,7 @@
 
         // Because the Load() is a async call (asynchronous), we'll need to use
         // the callback approach to handle the data after data is loaded.
-        courseListModelObj.Load(function (courseListData) {
+        courseListModelObj.GetCourseList(function (courseListData) {
 
             // courseList - presentation layer model retrieved from /Course/GetCourseList route.
             // courseListViewModel - view model for the html content
@@ -62,33 +62,29 @@
         });
     };
 
-    this.LoadByStaff = function (id) {
+    this.LoadByStaff = function () {
 
-            // Because the Load() is a async call (asynchronous), we'll need to use
-            // the callback approach to handle the data after data is loaded.
-            courseListModelObj.LoadByStaff(id, function (courseListData) {
+        // Because the Load() is a async call (asynchronous), we'll need to use
+        // the callback approach to handle the data after data is loaded.
+        courseListModelObj.GetCourseList(function (courseListData) {
+           // courseList - presentation layer model retrieved from /Course/GetCourseList route.
+           // courseListViewModel - view model for the html content
+           var courseListViewModel = new Array();
+           // DTO from the JSON model to the view model. In this case, courseListViewModel doesn't need the "id" attribute
+           for (var i = 0; i < courseListData.length; i++) {
+                courseListViewModel[i] = {
+                    id: courseListData[i].CourseId,
+                    title: courseListData[i].Title,
+                    description: courseListData[i].Description
+                };
+            }
 
-                // courseList - presentation layer model retrieved from /Course/GetCourseList route.
-                // courseListViewModel - view model for the html content
-                var courseListViewModel = new Array();
-
-                // DTO from the JSON model to the view model. In this case, courseListViewModel doesn't need the "id" attribute
-                for (var i = 0; i < courseListData.length; i++) {
-                    courseListViewModel[i] = {
-                        id: courseListData[i].CourseId,
-                        title: courseListData[i].Title,
-                        
-                        description: courseListData[i].Description
-                    };
-                }
-
-                // this is using knockoutjs to bind the viewModel and the view (Home/Index.cshtml)
-                ko.applyBindings({ viewModel: courseListViewModel }, document.getElementById("divCourseListStaffContent"));
-            });
+            // this is using knockoutjs to bind the viewModel and the view (Home/Index.cshtml)
+            ko.applyBindings({ viewModel: courseListViewModel }, document.getElementById("divCourseListStaffContent"));
+        });
     };
 
     this.HelpUpdateCourse = function (id) {
-      
         courseListModelObj.GetCourse(id, function (courseData) {
             var viewModel = {
                 id: ko.observable(courseData.CourseId),
@@ -140,8 +136,22 @@
         }
     };
 
-    this.LoadPrereqs = function (id) {
+    this.CreateRequirement = function (parentid, data) {
+        childid = data.selected().id;
+        console.log(parentid);
+        console.log(childid);
+        courseListModelObj.CreatePrereq(parentid, childid, function (result) {
+            if (result == "ok") {
+                alert("Create prereq successful");
+                location.reload();
+            } else {
+                console.log(result);
+                alert("Error occurred");
+            }
+        });
+    }
 
+    this.LoadPrereqs = function (id) {
         // Because the Load() is a async call (asynchronous), we'll need to use
         // the callback approach to handle the data after data is loaded.
         courseListModelObj.LoadPrereqs(id, function (courseListData) {
@@ -160,6 +170,31 @@
 
             // this is using knockoutjs to bind the viewModel and the view (Home/Index.cshtml)
             ko.applyBindings({ viewModel: courseListViewModel }, document.getElementById("divCoursePrereqs"));
+        });
+
+        // Also load courses for adding
+        // TODO: I added id because you might want to make a query where you omit the current course id
+        courseListModelObj.GetCourseListExcludeId(id, function (courseListData) {
+            // courseList - presentation layer model retrieved from /Major/GetMajorList route.
+            // majorListViewModel - view model for the html content
+            var courseListViewModel = {
+                availablecourses: ko.observableArray([]),
+                selected: ko.observable(),
+                createprereq: function () {
+                    self.CreateRequirement(id,this);
+                }
+            };
+
+            // DTO from the JSON model to the view model. In this case, majorListViewModel doesn't need the "id" attribute
+            for (var i = 0; i < courseListData.length; i++) {
+                courseListViewModel.availablecourses.push({
+                    id: courseListData[i].CourseId,
+                    title: courseListData[i].Title,
+                    description: courseListData[i].Description
+                });
+            }
+
+            ko.applyBindings(courseListViewModel, document.getElementById("divCoursePrereqsAdd"));
         });
     };
 

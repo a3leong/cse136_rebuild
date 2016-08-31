@@ -39,7 +39,7 @@
 
         MajorModelObj.Update(model, function (result) {
             if (result == "ok") {
-                alert("Update student successful");
+                alert("Update major successful");
                 location.reload();
             } else {
                 console.log(result);
@@ -57,11 +57,8 @@
 
         MajorModelObj.Create(model, function (result) {
             if (result == "ok") {
-                alert("Update student successful");
+                alert("Create Major successful");
             } else {
-                console.log(typeof(result));
-                console.log(result);
-                console.log("ok");
                 alert("Error occurred");
             }
         });
@@ -90,6 +87,21 @@
         });
     };
 
+    this.CreateRequirement = function (majorid, data) {
+        var courseid = data.selectedcourse().id; // We only need the numbers
+        console.log(majorid);
+        console.log(courseid);
+        MajorModelObj.CreateRequirement(majorid, courseid, function (result) {
+            if (result == "ok") {
+                alert("Create requirement successful");
+                location.reload();
+            } else {
+                console.log(result);
+                alert("Error occurred");
+            }
+        });
+    };
+
     this.LoadMajorRequirements = function (id) {
         // Because the Load() is a async call (asynchronous), we'll need to use
         // the callback approach to handle the data after data is loaded.
@@ -111,6 +123,31 @@
 
             // this is using knockoutjs to bind the viewModel and the view (Home/Index.cshtml)
             ko.applyBindings({ viewModel: requirementListViewModel }, document.getElementById("divMajorRequirementListContent"));
+        });
+
+        // Also load courses for adding
+        var CourseListModelObj = new CourseListModel();
+        CourseListModelObj.GetCourseList(function (courseListData) {
+            // courseList - presentation layer model retrieved from /Major/GetMajorList route.
+            // majorListViewModel - view model for the html content
+            var courseListViewModel = {
+                availablecourses: ko.observableArray([]),
+                selectedcourse : ko.observable(),
+                createrequirement: function () {
+                    self.CreateRequirement(id,this);
+                }
+            };
+
+            // DTO from the JSON model to the view model. In this case, majorListViewModel doesn't need the "id" attribute
+            for (var i = 0; i < courseListData.length; i++) {
+                courseListViewModel.availablecourses.push({
+                    id: courseListData[i].CourseId,
+                    title: courseListData[i].Title,
+                    description: courseListData[i].Description
+                });
+            }
+
+            ko.applyBindings(courseListViewModel, document.getElementById("divMajorAddRequirement"));
         });
     };
 }

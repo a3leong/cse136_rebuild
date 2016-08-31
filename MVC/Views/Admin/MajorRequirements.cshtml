@@ -26,7 +26,16 @@
         </tbody>
     </table>
 </div>
-
+<div id="divMajorAddRequirement">
+    <span>
+        <label>Add Requirement to @ViewBag.name:</label>
+        <select data-bind="options: availablecourses,
+                           optionsText: 'title',
+                           value: selectedcourse"></select>
+        <button data-bind="click:createrequirement">Add</button>
+    </span>
+</div>
+    
 <script type="text/javascript">
     $(document).ready(function () {
         var viewModel = new MajorViewModel();
