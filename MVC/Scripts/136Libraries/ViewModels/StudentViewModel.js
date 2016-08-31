@@ -71,34 +71,6 @@
         });
     };
 
-    this.UpdateStudent = function (id) {
-
-        StudentModelObj.Update(id, function(result) {
-
-            var model = {
-                StudentId: data.id(),
-                SSN: data.ssn(),
-                FirstName: data.first(),
-                LastName: data.last(),
-                Email: data.email(),
-                Password: data.password(),
-                ShoeSize: data.shoesize(),
-                Weight: data.weight()
-            }
-
-        });
-
-      /*  StudentModelObj.Update(model, function (result) {
-            if (result == "ok") {
-                alert("Create student successful");
-            } else {
-                alert("Error occurred");
-            }
-        }); */
-
-        //ko.applyBindings(model, document.getElementById("divStudentEdit"));
-    };
-
     this.GetAll = function() {
 
         StudentModelObj.GetAll(function(studentList) {
@@ -122,7 +94,6 @@
 
     this.LoadEdit = function (id) {
         StudentModelObj.GetDetail(id, function (result) {
-
             var student = {
                 id: result.StudentId,
                 first: ko.observable(result.FirstName),
@@ -132,14 +103,38 @@
                 weight: ko.observable(result.Weight),
                 ssn: ko.observable(result.SSN),
                 add: function(){ 
-                    alert("Feature not yet available");
+                    self.UpdateStudent(this);
                 }
             };
 
             if (initialBind) {
-                ko.applyBindings({ viewModel: student }, document.getElementById("divStudentContent"));
+                ko.applyBindings({ viewModel: student }, document.getElementById("divStudentEdit"));
+            }
+        })
+    };
+
+    this.UpdateStudent = function (data) {
+
+        var model = {
+            StudentId: data.id,
+            SSN: data.ssn,
+            FirstName: data.first,
+            LastName: data.last,
+            Email: data.email,
+            Password: data.password,
+            ShoeSize: data.shoesize,
+            Weight: data.weight
+        };
+
+        StudentModelObj.Update(model, function (result) {
+            if (result == "ok") {
+                alert("Create student successful");
+            } else {
+                alert("Error occurred");
             }
         });
+
+        //ko.applyBindings(model, document.getElementById("divStudentEdit"));
     };
 
     this.GetDetail = function (id) {
@@ -218,11 +213,13 @@
             $(element).click(function() {
                 var id = viewModel.id;
 
-                StudentModelObj.Delete(id, function(result) {
+                StudentModelObj.DeleteStudent(id, function(result) {
                     if (result != "ok") {
                         alert("Error occurred");
                     } else {
-                        studentListViewModel.remove(viewModel);
+                        //studentListViewModel.remove(viewModel);
+                        alert("Deletion success!");
+                        location.reload();
                     }
                 });
             });

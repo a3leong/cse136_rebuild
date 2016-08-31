@@ -25,14 +25,15 @@ function StudentModel(asyncIndicator) {
         });
     };
 
-    this.Delete = function (id, callback) {
+    this.DeleteStudent = function (id, callback) {
         $.ajax({
-            async: asyncIndicator,
+            //async: asyncIndicator,
             method: "POST",
             url: "http://localhost:9393/Api/Student/DeleteStudent?id=" + id,
             data: '',
             dataType: "json",
             success: function (result) {
+                
                 callback(result);
             },
             error: function () {
@@ -112,7 +113,7 @@ function StudentModel(asyncIndicator) {
 
     this.Update = function (student, callback) {
         $.ajax({
-            async: asyncIndicator,
+            //async: asyncIndicator,
             method: "POST",
             url: "http://localhost:9393/Api/Student/UpdateStudent",
             data: student,
