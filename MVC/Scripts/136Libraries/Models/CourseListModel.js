@@ -112,10 +112,10 @@
         console.log(id);
         $.ajax({
             method: "GET",
-            url: "http://localhost:9393/Api/Instructor/GetCourse?id=" + id,
+            url: "http://localhost:9393/Api/Course/GetCourseDetails?id=" + id,
             dataType: "json",
-            success: function (instructorData) {
-                if (instructorData === null) {
+            success: function (courseData) {
+                if (courseData === null) {
                     alert("Error, no data found when attempting to get course");
                     return;
                 }
