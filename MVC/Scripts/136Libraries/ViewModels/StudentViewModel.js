@@ -95,12 +95,14 @@
     this.LoadEdit = function (id) {
         StudentModelObj.GetDetail(id, function (result) {
             var student = {
-                id: result.StudentId,
+                id: ko.observable(result.StudentId),
                 first: ko.observable(result.FirstName),
                 last: ko.observable(result.LastName),
                 email: ko.observable(result.Email),
                 shoesize: ko.observable(result.ShoeSize),
+                password: ko.observable(result.Password),
                 weight: ko.observable(result.Weight),
+                major: ko.observable(result.Major),
                 ssn: ko.observable(result.SSN),
                 add: function(){ 
                     self.UpdateStudent(this);
@@ -108,7 +110,7 @@
             };
 
             if (initialBind) {
-                ko.applyBindings({ viewModel: student }, document.getElementById("divStudentEdit"));
+                ko.applyBindings(student, document.getElementById("divStudentEdit"));
             }
         })
     };
@@ -116,19 +118,31 @@
     this.UpdateStudent = function (data) {
 
         var model = {
-            StudentId: data.id,
-            SSN: data.ssn,
-            FirstName: data.first,
-            LastName: data.last,
-            Email: data.email,
-            Password: data.password,
-            ShoeSize: data.shoesize,
-            Weight: data.weight
+            StudentId: data.id(),
+            SSN: data.ssn(),
+            FirstName: data.first(),
+            LastName: data.last(),
+            Email: data.email(),
+            Password: data.password(),
+            ShoeSize: data.shoesize(),
+            Weight: data.weight(),
+            Major: data.major()
         };
+
+        console.log(model.StudentId);
+        console.log(model.SSN);
+        console.log(model.FirstName);
+        console.log(model.LastName);
+        console.log(model.Email);
+        console.log(model.Password);
+        console.log(model.ShoeSize);
+        console.log(model.Weight);
+        console.log(model.Major);
 
         StudentModelObj.Update(model, function (result) {
             if (result == "ok") {
-                alert("Create student successful");
+                alert("Edit student successful");
+                location.reload();
             } else {
                 alert("Error occurred");
             }
