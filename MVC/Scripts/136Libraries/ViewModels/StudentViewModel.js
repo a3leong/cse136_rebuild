@@ -179,16 +179,16 @@
                 ko.applyBindings({ viewModel: student }, document.getElementById("divStudentAuditStudentInfo"));
             }
         });
-
+        
         StudentModelObj.GetFinishedCourses(id, function (courseList) {
             courseListModel = new Array();
             for (var i = 0; i < courseList.length; i++) {
                 courseListModel.push({
                     id: courseList[i].CourseId,
-                    title: courseList[i].CourseTitle,
-                    description: courseList[i].CourseDescription
+                    title: courseList[i].Title,
+                    description: courseList[i].Description
                 });
-            }
+            }  
 
             if (initialBind) {
                 console.log("Bind");
@@ -201,8 +201,8 @@
             for (var i = 0; i < courseList.length; i++) {
                 courseListModel.push({
                     id: courseList[i].CourseId,
-                    title: courseList[i].CourseTitle,
-                    description: courseList[i].CourseDescription
+                    title: courseList[i].Title,
+                    description: courseList[i].Description
                 });
             }
 

@@ -146,7 +146,7 @@ function StudentModel(asyncIndicator) {
     this.GetUnfinishedCourses = function (id, callback) {
         $.ajax({
             method: 'GET',
-            url: "http://localhost:9393/Api/Student/GetUnfinishedCourses?id=" + id,
+            url: "http://localhost:9393/Api/Course/GetUnfinishedCourses?id=" + id,
             data: "",
             dataType: "json",
             success: function (result) {
@@ -162,14 +162,14 @@ function StudentModel(asyncIndicator) {
     this.GetFinishedCourses = function (id, callback) {
         $.ajax({
             method: 'GET',
-            url: "http://localhost:9393/Api/Student/GetFinishedCourses?id=" + id,
+            url: "http://localhost:9393/Api/Course/GetFinishedCourses?id=" + id,
             data: "",
             dataType: "json",
             success: function (result) {
                 callback(result);
             },
             error: function () {
-                alert('Error while loading student info.');
+                alert("Error while loading finished student courses");
                 callback("Error while loading student info");
             }
         });

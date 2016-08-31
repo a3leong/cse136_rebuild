@@ -17,6 +17,8 @@
         private const string DeletCourseInfoProcedure = "spDeleteCourseInfo";
         private const string GetCourseDetailProcedure = "spGetCourseInfo";
         private const string GetCourseListProcedure = "spGetCourseList";
+        private const string GetFinishedCoursesProcedure = "spGetFinishedCoursesByStudent";
+        private const string GetUnfinishedCoursesProcedure = "spGetUnfinishedCoursesByStudent";
 
         public void InsertCourse(Course course, ref List<string> errors)
         {
@@ -223,16 +225,113 @@
             return courseList;
         }
 
-
         public List<Course> GetFinishedCoursesByStudent(string id, ref List<string> errors)
         {
+            var conn = new SqlConnection(ConnectionString);
+            var courseList = new List<Course>();
 
-            throw new NotImplementedException();
+            try
+            {
+                var adapter = new SqlDataAdapter(GetFinishedCoursesProcedure, conn)
+                                  {
+                                      SelectCommand =
+                                          {
+                                              CommandType = CommandType.StoredProcedure
+                                          }
+                                  };
+
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@student_id", SqlDbType.VarChar, 20));
+                adapter.SelectCommand.Parameters["@student_id"].Value = id;
+
+                var dataSet = new DataSet();
+                adapter.Fill(dataSet);
+
+                if (dataSet.Tables[0].Rows.Count == 0)
+                {
+                    return null;
+                }
+
+                for (var i = 0; i < dataSet.Tables[0].Rows.Count; i++)
+                {
+                    var course = new Course
+                                     {
+                                         CourseId = dataSet.Tables[0].Rows[i]["course_id"].ToString(),
+                                         Title = dataSet.Tables[0].Rows[i]["course_title"].ToString(),
+                                         CourseLevel =
+                                             (CourseLevel)
+                                             Enum.Parse(
+                                                 typeof(CourseLevel),
+                                                 dataSet.Tables[0].Rows[i]["course_level"].ToString()),
+                                         Description = dataSet.Tables[0].Rows[i]["course_description"].ToString()
+                                     };
+                    courseList.Add(course);
+                }
+            }
+            catch (Exception e)
+            {
+                errors.Add("Error: " + e);
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+
+            return courseList;
         }
+        
 
         public List<Course> GetUnfinishedCoursesByStudent(string id, ref List<string> errors)
         {
-            throw new NotImplementedException();
+            var conn = new SqlConnection(ConnectionString);
+            var courseList = new List<Course>();
+
+            try
+            {
+                var adapter = new SqlDataAdapter(GetUnfinishedCoursesProcedure, conn)
+                {
+                    SelectCommand =
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    }
+                };
+
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@student_id", SqlDbType.VarChar, 20));
+                adapter.SelectCommand.Parameters["@student_id"].Value = id;
+
+                var dataSet = new DataSet();
+                adapter.Fill(dataSet);
+
+                if (dataSet.Tables[0].Rows.Count == 0)
+                {
+                    return null;
+                }
+
+                for (var i = 0; i < dataSet.Tables[0].Rows.Count; i++)
+                {
+                    var course = new Course
+                    {
+                        CourseId = dataSet.Tables[0].Rows[i]["course_id"].ToString(),
+                        Title = dataSet.Tables[0].Rows[i]["course_title"].ToString(),
+                        CourseLevel =
+                            (CourseLevel)
+                            Enum.Parse(
+                                typeof(CourseLevel),
+                                dataSet.Tables[0].Rows[i]["course_level"].ToString()),
+                        Description = dataSet.Tables[0].Rows[i]["course_description"].ToString()
+                    };
+                    courseList.Add(course);
+                }
+            }
+            catch (Exception e)
+            {
+                errors.Add("Error: " + e);
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+
+            return courseList;
         }
     }
 }
