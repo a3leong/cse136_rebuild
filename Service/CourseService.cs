@@ -90,7 +90,7 @@
 
         public List<Course> GetUnfinishedCourses(string id, ref List<string> errors)
         {
-            return repository.GetUninishedCoursesByStudent(id, ref errors);
+            return repository.GetUnfinishedCoursesByStudent(id, ref errors);
         }
     }
 }
