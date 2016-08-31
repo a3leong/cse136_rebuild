@@ -2,6 +2,18 @@
     var MajorModelObj = new MajorModel();
     var self = this;
 
+    this.LoadCreateMajor = function () {
+        var viewModel = {
+            fullname: ko.observable("New Major"),
+            shorthandname: ko.observable("NMJ"),
+            description: ko.observable("Description Here"),
+            create: function () {
+                self.CreateMajor(this);
+            }
+        };
+        ko.applyBindings(viewModel, document.getElementById("divMajorEdit"));
+    };
+
     this.LoadMajor = function (id) {
         MajorModelObj.LoadMajor(id, function (majorData) {
             var viewModel = {
@@ -25,13 +37,31 @@
             Description: data.description()
         }
 
-        alert(model.FullName);
-
         MajorModelObj.Update(model, function (result) {
             if (result == "ok") {
                 alert("Update student successful");
                 location.reload();
             } else {
+                console.log(result);
+                alert("Error occurred");
+            }
+        });
+    };
+
+    this.CreateMajor = function (data) {
+        var model = {
+            FullName: data.fullname(),
+            ShorthandName: data.shorthandname(),
+            Description: data.description()
+        }
+
+        MajorModelObj.Create(model, function (result) {
+            if (result == "ok") {
+                alert("Update student successful");
+            } else {
+                console.log(typeof(result));
+                console.log(result);
+                console.log("ok");
                 alert("Error occurred");
             }
         });

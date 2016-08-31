@@ -215,5 +215,17 @@
 
             return courseList;
         }
+
+
+        public List<Course> GetFinishedCoursesByStudent(string id, ref List<string> errors)
+        {
+
+            throw new NotImplementedException();
+        }
+
+        public List<Course> GetUnfinishedCoursesByStudent(string id, ref List<string> errors)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

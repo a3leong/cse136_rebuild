@@ -85,5 +85,7 @@
             NserviceBus.NserviceBusClient.Bus.Send(student);
             return "Sent delete student message to MSMQ using NServiceBus";
         }
+
+
     }
 }

@@ -27,6 +27,25 @@
             service.InsertCourse(course, ref errors);
         }
 
+        [HttpGet]
+        public List<Course> GetFinishedCourses(string id)
+        {
+            var errors = new List<string>();
+            var repository = new CourseRepository();
+            var service = new CourseService(repository);
+            return service.GetFinishedCourses(id, ref errors);
+        }
+
+        [HttpGet]
+        public List<Course> GetUnfinishedCourses(string id)
+        {
+            var errors = new List<string>();
+            var repository = new CourseRepository();
+            var service = new CourseService(repository);
+            return service.GetUnfinishedCourses(id, ref errors);
+        }
+
+
         [HttpPost]
         public void DeleteCourse(string id)
         {
