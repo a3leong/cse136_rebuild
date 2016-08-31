@@ -82,5 +82,15 @@
         {
             return repository.GetCourseDetails(id, ref errors);
         }
+
+        public List<Course> GetFinishedCourses(string id, ref List<string> errors)
+        {
+            return repository.GetFinishedCoursesByStudent(id, ref errors);
+        }
+
+        public List<Course> GetUnfinishedCourses(string id, ref List<string> errors)
+        {
+            return repository.GetUninishedCoursesByStudent(id, ref errors);
+        }
     }
 }

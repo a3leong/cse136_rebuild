@@ -144,36 +144,35 @@ function StudentModel(asyncIndicator) {
     };
 
     this.GetUnfinishedCourses = function (id, callback) {
-        var unfinished = [];
-        unfinished.push({
-            CourseId: 3,
-            CourseTitle: "Fluency in Information Technology",
-            CourseDescription: "get good at using tech"
+        $.ajax({
+            method: 'GET',
+            url: "http://localhost:9393/Api/Student/GetUnfinishedCourses?id=" + id,
+            data: "",
+            dataType: "json",
+            success: function (result) {
+                callback(result);
+            },
+            error: function () {
+                alert('Error while loading student info.');
+                callback("Error while loading student info");
+            }
         });
-        unfinished.push({
-            CourseId: 4,
-            CourseTitle: "Data Structures",
-            CourseDescription: "Learn various data structures"
-        });
-
-        callback(unfinished);
     };
 
     this.GetFinishedCourses = function (id, callback) {
-        // TODO Make actual ajax call isntead
-        var finished = [];
-        finished.push({
-            CourseId: 9,
-            CourseTitle: "Fluency in Information Technology",
-            CourseDescription: "get good at using tech"
+        $.ajax({
+            method: 'GET',
+            url: "http://localhost:9393/Api/Student/GetFinishedCourses?id=" + id,
+            data: "",
+            dataType: "json",
+            success: function (result) {
+                callback(result);
+            },
+            error: function () {
+                alert('Error while loading student info.');
+                callback("Error while loading student info");
+            }
         });
-        finished.push({
-            CourseId: 10,
-            CourseTitle: "Compilers",
-            CourseDescription: "this is a bad class"
-        });
-
-        callback(finished);
     };
 
 }

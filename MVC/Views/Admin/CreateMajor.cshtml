@@ -8,24 +8,20 @@
 <div id="divMajorEdit">
     <table>
         <tr>
-            <td>Id</td>
-            <td data-bind="text: viewModel.id"></td>
-        </tr>
-        <tr>
             <td>Full Name</td>
-            <td><input data-bind="value: viewModel.fullname" /></td>
+            <td><input data-bind="value: fullname" /></td>
         </tr>
         <tr>
             <td>Shorthand Name</td>
-            <td><input data-bind="value: viewModel.shorthandname" /></td>
+            <td><input data-bind="value: shorthandname" /></td>
         </tr>
         <tr>
             <td>Description</td>
-            <td><input data-bind="value: viewModel.description" /></td>
+            <td><input data-bind="value: description" /></td>
         </tr>
         <tr>
             <td></td>
-            <td><button data-bind="click: viewModel.create">Create</button></td>
+            <td><button data-bind="click: create">Add</button></td>
         </tr>
     </table>
 </div>
@@ -33,6 +29,6 @@
 <script type="text/javascript">
     $(document).ready(function () {
         var majorViewModelObj = new MajorViewModel();
-        majorViewModelObj.LoadMajor(@id);
+        majorViewModelObj.LoadCreateMajor();
     });
 </script>

@@ -15,5 +15,9 @@
         Course GetCourseDetails(string id, ref List<string> errors);
 
         List<Course> GetCourseList(ref List<string> errors);
+
+        List<Course> GetFinishedCoursesByStudent(string id, ref List<string> errors);
+
+        List<Course> GetUnfinishedCoursesByStudent(string id, ref List<string> errors);
     }
 }
