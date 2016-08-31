@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Data;
     using System.Data.SqlClient;
+    using System.Diagnostics;
 
     using IRepository;
 
@@ -12,13 +13,14 @@
     public class CourseRepository : BaseRepository, ICourseRepository
     {
         private const string InsertCourseInfoProcedure = "spInsertCourseInfo";
-        private const string UpdateCourseInfoProcedure = "spUpdateCourseInfo";
+        private const string UpdateCourseInfoProcedure = "spUpdateCoursesInfo";
         private const string DeletCourseInfoProcedure = "spDeleteCourseInfo";
         private const string GetCourseDetailProcedure = "spGetCourseInfo";
         private const string GetCourseListProcedure = "spGetCourseList";
 
         public void InsertCourse(Course course, ref List<string> errors)
         {
+            int id = Convert.ToInt32(course.CourseId);
             var conn = new SqlConnection(ConnectionString);
             try
             {
@@ -30,15 +32,15 @@
                     }
                 };
 
-                adapter.SelectCommand.Parameters.Add(new SqlParameter("@course_id", SqlDbType.Int));
-                adapter.SelectCommand.Parameters.Add(new SqlParameter("@course_title", SqlDbType.VarChar, 100));
-                adapter.SelectCommand.Parameters.Add(new SqlParameter("@course_level", SqlDbType.VarChar, 10));
-                adapter.SelectCommand.Parameters.Add(new SqlParameter("@course_description", SqlDbType.VarChar, 8000));
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@id", SqlDbType.Int));
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@title", SqlDbType.VarChar, 100));
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@level", SqlDbType.VarChar, 10));
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@description", SqlDbType.VarChar, 8000));
 
-                adapter.SelectCommand.Parameters["@course_id"].Value = course.CourseId;
-                adapter.SelectCommand.Parameters["@course_title"].Value = course.Title;
-                adapter.SelectCommand.Parameters["@course_level"].Value = course.CourseLevel;
-                adapter.SelectCommand.Parameters["@course_description"].Value = course.Description;
+                adapter.SelectCommand.Parameters["@id"].Value = id;
+                adapter.SelectCommand.Parameters["@title"].Value = course.Title;
+                adapter.SelectCommand.Parameters["@level"].Value = course.CourseLevel;
+                adapter.SelectCommand.Parameters["@description"].Value = course.Description;
 
                 var dataSet = new DataSet();
                 adapter.Fill(dataSet);
@@ -55,6 +57,7 @@
 
         public void UpdateCourse(Course course, ref List<string> errors)
         {
+            int id = Convert.ToInt32(course.CourseId);
             var conn = new SqlConnection(ConnectionString);
             try
             {
@@ -68,7 +71,7 @@
                 adapter.SelectCommand.Parameters.Add(new SqlParameter("@course_level", SqlDbType.VarChar, 10));
                 adapter.SelectCommand.Parameters.Add(new SqlParameter("@course_description", SqlDbType.VarChar, 8000));
 
-                adapter.SelectCommand.Parameters["@course_id"].Value = course.CourseId;
+                adapter.SelectCommand.Parameters["@course_id"].Value = id;
                 adapter.SelectCommand.Parameters["@course_title"].Value = course.Title;
                 adapter.SelectCommand.Parameters["@course_level"].Value = course.CourseLevel;
                 adapter.SelectCommand.Parameters["@course_description"].Value = course.Description;
@@ -86,8 +89,10 @@
             }
         }
 
-        public void DeleteCourse(string id, ref List<string> errors)
+        public void DeleteCourse(string string_id, ref List<string> errors)
         {
+            int id = Convert.ToInt32(string_id);
+
             var conn = new SqlConnection(ConnectionString);
 
             try
@@ -101,7 +106,7 @@
                             .StoredProcedure
                     }
                 };
-                adapter.SelectCommand.Parameters.Add(new SqlParameter("@course_id", SqlDbType.VarChar, 20));
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@course_id", SqlDbType.Int));
 
                 adapter.SelectCommand.Parameters["@course_id"].Value = id;
 
@@ -118,10 +123,12 @@
             }
         }
 
-        public Course GetCourseDetails(string id, ref List<string> errors)
+        public Course GetCourseDetails(string string_id, ref List<string> errors)
         {
             var conn = new SqlConnection(ConnectionString);
             Course course = null;
+
+            int id = Convert.ToInt32(string_id);
 
             try
             {
@@ -129,7 +136,7 @@
                 {
                     SelectCommand = { CommandType = CommandType.StoredProcedure }
                 };
-                adapter.SelectCommand.Parameters.Add(new SqlParameter("@course_id", SqlDbType.VarChar, 20));
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@course_id", SqlDbType.Int));
 
                 adapter.SelectCommand.Parameters["@course_id"].Value = id;
 

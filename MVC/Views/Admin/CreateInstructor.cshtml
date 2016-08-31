@@ -6,6 +6,10 @@
 <div id="divCreateInstructor">
     <table>
         <tr>
+            <td>ID</td>
+            <td><input data-bind="value: id" /></td>
+        </tr>
+        <tr>
             <td>First Name</td>
             <td><input data-bind="value: first_name" /></td>
         </tr>
@@ -27,6 +31,6 @@
 <script type="text/javascript">
     $(document).ready(function () {
         var instructorViewModelObj = new InstructorViewModel();
-        instructorViewModelObj.CreateInstructor();
+        instructorViewModelObj.HelpCreateInstructor();
     });
 </script>

@@ -20,11 +20,16 @@
 
         //// you can add more [HttpGet] and [HttpPost] methods as you need
         [HttpPost]
-        public void InsertCourse(Course course)
+        public string InsertCourse(Course course)
         {
             var service = new CourseService(new CourseRepository());
             var errors = new List<string>();
             service.InsertCourse(course, ref errors);
+            if (errors.Count == 0)
+            {
+                return "ok";
+            }
+            return "error";
         }
 
         [HttpGet]
@@ -47,19 +52,29 @@
 
 
         [HttpPost]
-        public void DeleteCourse(string id)
+        public string DeleteCourse(string id)
         {
             var service = new CourseService(new CourseRepository());
             var errors = new List<string>();
             service.DeleteCourse(id, ref errors);
+            if (errors.Count == 0)
+            {
+                return "ok";
+            }
+            return "error";
         }
 
         [HttpPost]
-        public void UpdateCourse(Course course)
+        public string UpdateCourse(Course course)
         {
             var service = new CourseService(new CourseRepository());
             var errors = new List<string>();
             service.UpdateCourse(course, ref errors);
+            if (errors.Count == 0)
+            {
+                return "ok";
+            }
+            return "error";
         }
 
         [HttpGet]

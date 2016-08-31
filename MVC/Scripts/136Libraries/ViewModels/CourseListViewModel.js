@@ -1,26 +1,44 @@
 ﻿function CourseListViewModel() {
+    var self = this;
+    var courseListModelObj = new CourseListModel();
 
-    this.Initialize = function () {
+
+    this.HelpCreateCourse = function() {
 
         var viewModel = {
-            id: ko.observable(5),
-            title: ko.observable("Fluency in Information Technology"),
-            description: ko.observable("Learn how to use various computer software tools."),
-            //add: function (data) {
-            //    self.CreateCourse(data);
-            //}
+            id: ko.observable("enter id here"),
+            title: ko.observable("enter course title here"),
+            level: ko.observable("enter course level here"),
+            description: ko.observable("enter description"),
+            add: function (data) {
+                self.CreateCourse(data);
+            }
         };
 
-        ko.applyBindings(viewModel, document.getElementById("divEditCourse"));
+        ko.applyBindings(viewModel, document.getElementById("divCreateCourses"));
+    };
+
+    this.CreateCourse = function (data) {
+        var model = {
+            CourseId: data.id,
+            Title: data.title,
+            CourseLevel: data.level,
+            Description: data.description
+        }
+
+        courseListModelObj.CreateCourse(model, function (result) {
+            if (result == "ok") {
+                alert("Create course successful");
+            } else {
+                alert("Error occurred! Make sure the id is unique!");
+            }
+        });
     };
 
 
 
 
-
-
     this.Load = function () {
-        var courseListModelObj = new CourseListModel();
 
         // Because the Load() is a async call (asynchronous), we'll need to use
         // the callback approach to handle the data after data is loaded.
@@ -45,7 +63,6 @@
     };
 
     this.LoadByStaff = function (id) {
-            var courseListModelObj = new CourseListModel();
 
             // Because the Load() is a async call (asynchronous), we'll need to use
             // the callback approach to handle the data after data is loaded.
@@ -60,6 +77,7 @@
                     courseListViewModel[i] = {
                         id: courseListData[i].CourseId,
                         title: courseListData[i].Title,
+                        
                         description: courseListData[i].Description
                     };
                 }
@@ -69,65 +87,53 @@
             });
     };
 
-    this.Create = function (data) {
-        var model = {
-            Title: data.title(),
-            Level: data.level(),
-            Description: data.description()
-        }
+    this.HelpUpdateCourse = function (id) {
+      
+        courseListModelObj.GetCourse(id, function (courseData) {
+            var viewModel = {
+                id: ko.observable(courseData.CourseId),
+                title: ko.observable(courseData.Title),
+                level: ko.observable(courseData.CourseLevel),
+                description: ko.observable(courseData.Description),
+                update: function () {
+                    self.UpdateCourse(this);
+                }
+            };
 
-        courseListModelObj.Create(model, function (result) {
-            if (result == "ok") {
-                alert("Create course successful");
-            } else {
-                alert("Error occurred");
-            }
-        });
-    }
-
-    this.Create = function (data) {
-        var model = {
-            Title: data.title(),
-            Level: data.level(),
-            Description: data.description()
-        }
-
-        courseListModelObj.Create(model, function (result) {
-            if (result == "ok") {
-                alert("Create course successful");
-            } else {
-                alert("Error occurred");
-            }
-        });
-    }
-
-    this.Update = function (data) {
-        var model = {
-            Title: data.title(),
-            Level: data.level(),
-            Description: data.description()
-        }
-
-        courseListModelObj.Update(model, function (result) {
-            if (result == "ok") {
-                alert("Create course successful");
-            } else {
-                alert("Error occurred");
-            }
-        });
+            ko.applyBindings(viewModel, document.getElementById("divEditCourse"));
+        })
 
     };
 
-    ko.bindingHandlers.Delete = {
+    this.UpdateCourse = function (data) {
+        var model = {
+            CourseId: data.id(),
+            Title: data.title(),
+            Level: data.level(),
+            Description: data.description()
+        };
+
+        courseListModelObj.UpdateCourse(model, function (result) {
+            if (result == "ok") {
+                alert("Update course successful");
+                location.reload();
+            } else {
+                alert("Error occurred");
+            }
+        });
+    };
+
+    ko.bindingHandlers.DeleteCourse = {
         init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
             $(element).click(function () {
                 var id = viewModel.id;
 
-                courseListModelObj.Delete(id, function (result) {
+                courseListModelObj.DeleteCourse(id, function (result) {
                     if (result != "ok") {
                         alert("Error occurred");
                     } else {
-                        courseListViewModel.remove(viewModel);
+                        alert("Deletion success!")
+                        location.reload();
                     }
                 });
             });
@@ -135,7 +141,6 @@
     };
 
     this.LoadPrereqs = function (id) {
-        var courseListModelObj = new CourseListModel();
 
         // Because the Load() is a async call (asynchronous), we'll need to use
         // the callback approach to handle the data after data is loaded.

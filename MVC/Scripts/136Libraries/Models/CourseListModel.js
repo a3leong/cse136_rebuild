@@ -45,14 +45,14 @@
          **/
     };
 
-    this.Create = function (course, callback) {
+    this.CreateCourse = function (course, callback) {
         $.ajax({
-            async: asyncIndicator,
             method: "POST",
             url: "http://localhost:9393/Api/Course/InsertCourse",
             data: course,
             dataType: "json",
             success: function (result) {
+                alert('Successfully added course!');
                 callback(result);
             },
             error: function () {
@@ -61,9 +61,9 @@
         });
     };
 
-    this.Update = function (course, callback) {
+    this.UpdateCourse = function (course, callback) {
         $.ajax({
-            async: asyncIndicator,
+            //async: asyncIndicator,
             method: "POST",
             url: "http://localhost:9393/Api/Course/UpdateCourse",
             data: course,
@@ -77,9 +77,9 @@
         });
     };
 
-    this.Delete = function (id, callback) {
+    this.DeleteCourse = function (id, callback) {
         $.ajax({
-            async: asyncIndicator,
+            //async: asyncIndicator,
             method: "POST",
             url: "http://localhost:9393/Api/Course/DeleteCourse?id=" + id,
             data: '',
@@ -106,5 +106,25 @@
             }
         });
     }
+
+
+    this.GetCourse = function (id, callback) {
+        console.log(id);
+        $.ajax({
+            method: "GET",
+            url: "http://localhost:9393/Api/Course/GetCourseDetails?id=" + id,
+            dataType: "json",
+            success: function (courseData) {
+                if (courseData === null) {
+                    alert("Error, no data found when attempting to get course");
+                    return;
+                }
+                callback(courseData);
+            },
+            error: function () {
+                alert('Error while loading the course.  Is your service layer running?');
+            }
+        });
+    };
 
 }
