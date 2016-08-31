@@ -19,6 +19,8 @@
         private const string GetCourseListProcedure = "spGetCourseList";
         private const string GetFinishedCoursesProcedure = "spGetFinishedCoursesByStudent";
         private const string GetUnfinishedCoursesProcedure = "spGetUnfinishedCoursesByStudent";
+        private const string InsertPrereqProcedure = "spInsertPrereqInfo";
+        private const string DeletePrereqProcedure = "spDeletePrereqsInfo";
 
         public void InsertCourse(Course course, ref List<string> errors)
         {
@@ -333,5 +335,79 @@
 
             return courseList;
         }
+
+        public void InsertPrereq(string course_id, string prereq_id, ref List<string> errors)
+        {
+            int c_id = Convert.ToInt32(course_id);
+            int p_id = Convert.ToInt32(prereq_id);
+            var conn = new SqlConnection(ConnectionString);
+            try
+            {
+                var adapter = new SqlDataAdapter(InsertPrereqProcedure, conn)
+                {
+                    SelectCommand =
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    }
+                };
+
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@course_id", SqlDbType.Int));
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@prereq_id", SqlDbType.Int));
+   
+
+                adapter.SelectCommand.Parameters["@course_id"].Value = c_id;
+                adapter.SelectCommand.Parameters["@prereq_id"].Value = p_id;
+
+                var dataSet = new DataSet();
+                adapter.Fill(dataSet);
+            }
+            catch (Exception e)
+            {
+                errors.Add("Error: " + e);
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public void DeletePrereq(string course_id, string prereq_id, ref List<string> errors)
+        {
+            int c_id = Convert.ToInt32(course_id);
+            int p_id = Convert.ToInt32(prereq_id);
+            var conn = new SqlConnection(ConnectionString);
+
+            try
+            {
+                var adapter = new SqlDataAdapter(DeletePrereqProcedure, conn)
+                {
+                    SelectCommand =
+                    {
+                        CommandType =
+                            CommandType
+                            .StoredProcedure
+                    }
+                };
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@course_id", SqlDbType.Int));
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@prereq_id", SqlDbType.Int));
+
+
+                adapter.SelectCommand.Parameters["@course_id"].Value = c_id;
+                adapter.SelectCommand.Parameters["@prereq_id"].Value = p_id;
+
+                var dataSet = new DataSet();
+                adapter.Fill(dataSet);
+            }
+            catch (Exception e)
+            {
+                errors.Add("Error: " + e);
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+
+        }
+
     }
 }

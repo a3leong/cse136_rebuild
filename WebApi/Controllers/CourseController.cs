@@ -84,5 +84,33 @@
             var errors = new List<string>();
             return service.GetCourseDetails(id, ref errors);
         }
+
+        [HttpPost]
+        public string InsertPrereq(string cid, string pid)
+        {
+            var service = new CourseService(new CourseRepository());
+            var errors = new List<string>();
+            service.InsertPrereq(cid, pid, ref errors);
+            if(errors.Count == 0)
+            {
+                return "ok";
+            }
+
+            return "error";
+        }
+
+        [HttpPost]
+        public string DeletePrereq(string cid, string pid)
+        {
+            var service = new CourseService(new CourseRepository());
+            var errors = new List<string>();
+            service.DeletePrereq(cid, pid, ref errors);
+            if (errors.Count == 0)
+            {
+                return "ok";
+            }
+
+            return "error";
+        }
     }
 }

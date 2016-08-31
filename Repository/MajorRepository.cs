@@ -15,6 +15,8 @@
         private const string GetMajorDetailProcedure = "spGetMajorInfo";
         private const string GetMajorListProcedure = "spGetMajorList";
         private const string GetMajorRequirementsListProcedure = "spGetMajorRequirementsList";
+        private const string InsertMajorRequirementsProcedure = "spInsertRequirementInfo";
+        private const string DeleteMajorRequirementsProcedure = "spDeleteRequirementsInfo";
 
         public void InsertMajor(Major major, ref List<string> errors)
         {
@@ -260,6 +262,74 @@
             }
 
             return courseList;
+        }
+
+        public void InsertRequirement(string major_id, string course_id, ref List<string> errors)
+        {
+            int m_id = Convert.ToInt32(major_id);
+            int c_id = Convert.ToInt32(course_id);
+            var conn = new SqlConnection(ConnectionString);
+            try
+            {
+                var adapter = new SqlDataAdapter(InsertMajorRequirementsProcedure, conn)
+                {
+                    SelectCommand =
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    }
+                };
+
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@major_id", SqlDbType.Int));
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@course_id", SqlDbType.Int));
+
+                adapter.SelectCommand.Parameters["@major_id"].Value = m_id;
+                adapter.SelectCommand.Parameters["@course_id"].Value = c_id;
+
+                var dataSet = new DataSet();
+                adapter.Fill(dataSet);
+            }
+            catch (Exception e)
+            {
+                errors.Add("Error: " + e);
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public void DeleteRequirement(string major_id, string course_id, ref List<string> errors) 
+        {
+            int m_id = Convert.ToInt32(major_id);
+            int c_id = Convert.ToInt32(course_id);
+            var conn = new SqlConnection(ConnectionString);
+            try
+            {
+                var adapter = new SqlDataAdapter(InsertMajorRequirementsProcedure, conn)
+                {
+                    SelectCommand =
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    }
+                };
+
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@major_id", SqlDbType.Int));
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@course_id", SqlDbType.Int));
+
+                adapter.SelectCommand.Parameters["@major_id"].Value = m_id;
+                adapter.SelectCommand.Parameters["@course_id"].Value = c_id;
+
+                var dataSet = new DataSet();
+                adapter.Fill(dataSet);
+            }
+            catch (Exception e)
+            {
+                errors.Add("Error: " + e);
+            }
+            finally
+            {
+                conn.Dispose();
+            }
         }
     }
 }
