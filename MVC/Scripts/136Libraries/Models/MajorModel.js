@@ -82,12 +82,12 @@
         });
     };
 
-    this.CreateRequirement = function (majorid, courseid, callback) {
-        callback("ok");
-        // TODO ajax
-      /**  $.ajax({
+    this.DeleteRequirement = function (majorid, courseid, callback) {
+        console.log(majorid);
+        console.log(courseid);
+        $.ajax({
             method: "POST",
-            url: "http://localhost:9393/Api/Major/CreateMajorRequirement?majorid=" + id+"&courseid="+courseid,
+            url: "http://localhost:9393/Api/Major/DeleteRequirement?major_id=" + majorid + "&course_id=" + courseid,
             dataType: "json",
             success: function (response) {
                 if (response === null) {
@@ -98,6 +98,23 @@
             error: function () {
                 alert('Error while creating major requirement.  Is your service layer running?');
             }
-        }); **/
+        }); 
+    };
+
+    this.CreateRequirement = function (majorid, courseid, callback) {
+        $.ajax({
+            method: "POST",
+            url: "http://localhost:9393/Api/Major/InsertRequirement?major_id=" + majorid + "&course_id=" + courseid,
+            dataType: "json",
+            success: function (response) {
+                if (response === null) {
+                    alert("Error creating major requirement relationship");
+                }
+                callback(response);
+            },
+            error: function () {
+                alert('Error while creating major requirement.  Is your service layer running?');
+            }
+        }); 
     };
 }

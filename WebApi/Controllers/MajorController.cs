@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Web.Http;
+    using System.Diagnostics;
     using POCO;
     using IRepository;
     using Repository;
@@ -121,6 +122,7 @@
             {
                 return "ok";
             }
+            Debug.WriteLine(errors[0]);
 
             return "error";
         }
