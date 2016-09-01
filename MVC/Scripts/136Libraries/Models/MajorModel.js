@@ -100,4 +100,20 @@
             }
         }); **/
     };
+
+    this.Delete = function (id, callback) {
+        $.ajax({
+            method: "POST",
+            url: "http://localhost:9393/Api/Major/DeleteMajor?id="+id,
+            data: "",
+            dataType: "json",
+            success: function (result) {
+                callback(result);
+            },
+            error: function () {
+                alert('Error while deleting major.  Is your service layer running?');
+            }
+        });
+    }
+
 }
