@@ -370,6 +370,9 @@
             {
                 conn.Dispose();
             }
+
+            //Debug.WriteLine("Error count is: " + errors.Count);
+
         }
 
         public void DeletePrereq(string course_id, string prereq_id, ref List<string> errors)

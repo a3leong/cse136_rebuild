@@ -154,7 +154,7 @@
             dataType: "json",
             success: function (response) {
                 if (response === null) {
-                    alert('Error creating prerec, response is null')
+                    alert('Error creating prereq, response is null')
                     return;
                 }
                 callback(response);
