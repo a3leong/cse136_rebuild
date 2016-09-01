@@ -21,6 +21,7 @@
         private const string GetUnfinishedCoursesProcedure = "spGetUnfinishedCoursesByStudent";
         private const string InsertPrereqProcedure = "spInsertPrereqInfo";
         private const string DeletePrereqProcedure = "spDeletePrereqsInfo";
+        private const string GetPrereqsListProcedure = "spGetPrereqList";
 
         public void InsertCourse(Course course, ref List<string> errors)
         {
@@ -407,6 +408,61 @@
                 conn.Dispose();
             }
 
+        }
+
+        public List<Course> GetPrereqs(string course_id, ref List<string> errors)
+        {
+            int id = Convert.ToInt32(course_id);
+            var conn = new SqlConnection(ConnectionString);
+            var courseList = new List<Course>();
+
+            try
+            {
+                var adapter = new SqlDataAdapter(GetPrereqsListProcedure, conn)
+                {
+                    SelectCommand =
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    }
+                };
+
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@course_id", SqlDbType.Int));
+                adapter.SelectCommand.Parameters["@course_id"].Value = id;
+
+                var dataSet = new DataSet();
+                adapter.Fill(dataSet);
+
+                if (dataSet.Tables[0].Rows.Count == 0)
+                {
+                    return null;
+                }
+
+                for (var i = 0; i < dataSet.Tables[0].Rows.Count; i++)
+                {
+                    var course = new Course
+                    {
+                        CourseId = dataSet.Tables[0].Rows[i]["course_id"].ToString(),
+                        Title = dataSet.Tables[0].Rows[i]["course_title"].ToString(),
+                        CourseLevel =
+                            (CourseLevel)
+                            Enum.Parse(
+                                typeof(CourseLevel),
+                                dataSet.Tables[0].Rows[i]["course_level"].ToString()),
+                        Description = dataSet.Tables[0].Rows[i]["course_description"].ToString()
+                    };
+                    courseList.Add(course);
+                }
+            }
+            catch (Exception e)
+            {
+                errors.Add("Error: " + e);
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+
+            return courseList;
         }
 
     }

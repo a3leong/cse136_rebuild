@@ -23,5 +23,7 @@
         void InsertPrereq(string course_id, string prereq_id, ref List<string> errors);
 
         void DeletePrereq(string course_id, string prereq_id, ref List<string> errors);
+
+        List<Course> GetPrereqs(string course_id, ref List<string> errors);
     }
 }
