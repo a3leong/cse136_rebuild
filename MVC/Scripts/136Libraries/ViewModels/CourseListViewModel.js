@@ -151,6 +151,18 @@
         });
     }
 
+    this.DeletePrereq(cid,pid) {
+        courseListModelObj.DeletePrereq(cid, pid, function (result) {
+            if (result == "ok") {
+                alert("Delete requirement successful");
+                location.reload();
+            } else {
+                console.log(result);
+                alert("Error occurred");
+            }
+        });
+    }
+
     this.LoadPrereqs = function (id) {
         // Because the Load() is a async call (asynchronous), we'll need to use
         // the callback approach to handle the data after data is loaded.
@@ -164,7 +176,10 @@
             for (var i = 0; i < courseListData.length; i++) {
                 courseListViewModel[i] = {
                     id: courseListData[i].CourseId,
-                    title: courseListData[i].Title
+                    title: courseListData[i].Title,
+                    removeprereq: function () {
+                        self.RemovePrereq(id, this.id);
+                    }
                 };
             }
 

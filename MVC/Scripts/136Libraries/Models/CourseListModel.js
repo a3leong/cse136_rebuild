@@ -93,10 +93,9 @@
     }
 
     this.CreatePrereq = function (parentid, childid, callback) {
-        // TODO use when john's api supports
-        /**
         $.ajax({
-            url: "http://localhost:9393/Api/Course/CreatePrereq?parentid="+parentid+"&childid="+childid,
+            method: "POST",
+            url: "http://localhost:9393/Api/Course/InsertPrereq?cid=" + parentid + "&pid=" + childid,
             data: "",
             dataType: "json",
             success: function (response) {
@@ -110,29 +109,12 @@
                 alert('Error while creating prereq.  Is your service layer running?');
             }
         });
-        **/
-
-        callback("ok");
-
     }
 
     this.LoadPrereqs = function (id, callback) {
-        // TODO change to this when john's code actually supports this
-       /** $.ajax({
+       $.ajax({
             method: "GET",
-            url: "http://localhost:9393/Api/Course/GetCoursePrereqs?id=" + id,
-            data: "",
-            dataType: "json",
-            success: function (courseListData) {
-                callback(courseListData);
-            },
-            error: function () {
-                alert('Error while loading course list.  Is your service layer running?');
-            }
-        });  **/
-
-        $.ajax({
-            url: "http://localhost:9393/Api/Course/GetCourseList",
+            url: "http://localhost:9393/Api/Course/GetCoursePrereqs?course_id=" + id,
             data: "",
             dataType: "json",
             success: function (courseListData) {
@@ -163,5 +145,24 @@
             }
         });
     };
+
+    this.DeletePrereq = function (cid, pid, callback) {
+        $.ajax({
+            method: "POST",
+            url: "http://localhost:9393/Api/Course/DeletePrereq?cid=" + cid + "&pid=" + pid,
+            data: "",
+            dataType: "json",
+            success: function (response) {
+                if (response === null) {
+                    alert('Error creating prerec, response is null')
+                    return;
+                }
+                callback(response);
+            },
+            error: function () {
+                alert('Error while creating prereq.  Is your service layer running?');
+            }
+        });
+    }
 
 }

@@ -16,7 +16,7 @@
         <tbody data-bind="foreach: viewModel">
             <tr>
                 <td data-bind="text: title"></td>
-                <td><div data-bind="template: { name: 'action-template', data: $data}"></div></td>
+                <td><a data-bind="click: removeprereq">remove</a></td>
             </tr>
         </tbody>
     </table>
@@ -31,11 +31,6 @@
     </span>
     <button data-bind="click:createprereq">Add</button>
 </div>
-
-<script type="text/html" id="action-template">
-    <!-- in the template, $data is each element of the viewModel which contains "id" -->
-    <a data-bind="attr: { href : '/Admin/Prereqs?='+id, title: 'remove' }">Remove</a>
-</script>
 
 <script type="text/javascript">
     $(document).ready(function () {
