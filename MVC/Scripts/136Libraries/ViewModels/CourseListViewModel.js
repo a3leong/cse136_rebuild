@@ -151,7 +151,7 @@
         });
     }
 
-    this.DeletePrereq(cid,pid) {
+    this.RemovePrereq = function (cid, pid) {
         courseListModelObj.DeletePrereq(cid, pid, function (result) {
             if (result == "ok") {
                 alert("Delete requirement successful");

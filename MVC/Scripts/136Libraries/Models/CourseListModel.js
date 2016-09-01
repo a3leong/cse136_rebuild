@@ -114,7 +114,7 @@
     this.LoadPrereqs = function (id, callback) {
        $.ajax({
             method: "GET",
-            url: "http://localhost:9393/Api/Course/GetCoursePrereqs?course_id=" + id,
+            url: "http://localhost:9393/Api/Course/GetPrereqs?course_id=" + id,
             data: "",
             dataType: "json",
             success: function (courseListData) {

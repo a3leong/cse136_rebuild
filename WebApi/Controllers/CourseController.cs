@@ -114,7 +114,7 @@
             return "error";
         }
 
-        [HttpPost]
+        [HttpGet]
         public List<Course> GetPrereqs(string course_id)
         {
             var service = new CourseService(new CourseRepository());
