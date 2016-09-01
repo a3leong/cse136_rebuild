@@ -305,7 +305,7 @@
             var conn = new SqlConnection(ConnectionString);
             try
             {
-                var adapter = new SqlDataAdapter(InsertMajorRequirementsProcedure, conn)
+                var adapter = new SqlDataAdapter(DeleteMajorRequirementsProcedure, conn)
                 {
                     SelectCommand =
                     {

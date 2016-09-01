@@ -89,8 +89,7 @@
 
     this.CreateRequirement = function (majorid, data) {
         var courseid = data.selectedcourse().id; // We only need the numbers
-        console.log(majorid);
-        console.log(courseid);
+
         MajorModelObj.CreateRequirement(majorid, courseid, function (result) {
             if (result == "ok") {
                 alert("Create requirement successful");
@@ -101,6 +100,18 @@
             }
         });
     };
+
+    this.DeleteRequirement = function (majorid, data) {
+        MajorModelObj.DeleteRequirement(majorid, data.courseid, function (result) {
+            if (result == "ok") {
+                alert("Delete requirement successful");
+                location.reload();
+            } else {
+                console.log(result);
+                alert("Error occurred");
+            }
+        });
+    }
 
     this.LoadMajorRequirements = function (id) {
         // Because the Load() is a async call (asynchronous), we'll need to use
@@ -118,6 +129,9 @@
                     coursename: requirementListData[i].Title,
                     courselevel: requirementListData[i].CourseLevel,
                     coursedescription: requirementListData[i].Description,
+                    deleterequirement: function () {
+                        self.DeleteRequirement(id, this);
+                    }
                 };
             }
 

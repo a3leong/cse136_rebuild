@@ -7,12 +7,11 @@
 <h3>@ViewBag.name Course Requirements</h3>
 
 <div id="divMajorRequirementListContent">
-    <table>
+    <table style="width:80%">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>Level</th>
                 <th>Description</th>
             </tr>
         </thead>
@@ -20,8 +19,8 @@
             <tr>
                 <td data-bind="text: courseid"></td>
                 <td data-bind="text: coursename"></td>
-                <td data-bind="text: courselevel"></td>
                 <td data-bind="text: coursedescription"></td>
+                <td><a data-bind="click:deleterequirement">Delete</a></td>
             </tr>
         </tbody>
     </table>
