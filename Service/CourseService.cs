@@ -102,5 +102,10 @@
         {
             repository.DeletePrereq(cid, pid, ref errors);
         }
+
+        public List<Course> GetPrereqs(string course_id, ref List<string> errors)
+        {
+            return repository.GetPrereqs(course_id, ref errors);
+        }
     }
 }

@@ -113,5 +113,13 @@
 
             return "error";
         }
+
+        [HttpPost]
+        public List<Course> GetPrereqs(string course_id)
+        {
+            var service = new CourseService(new CourseRepository());
+            var errors = new List<string>();
+            return service.GetPrereqs(course_id, ref errors);
+        }
     }
 }

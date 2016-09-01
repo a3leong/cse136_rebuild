@@ -164,5 +164,23 @@
             ko.applyBindings(courseListViewModel, document.getElementById("divMajorAddRequirement"));
         });
     };
+
+    ko.bindingHandlers.DeleteMajor = {
+        init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+            $(element).click(function () {
+                var id = viewModel.id;
+
+                MajorModelObj.Delete(id, function (result) {
+                    if (result != "ok") {
+                        alert("Error occurred");
+                    } else {
+                        alert("Deletion success!")
+                    }
+                });
+            });
+        }
+    };
+
+
 }
 
